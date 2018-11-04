@@ -12,13 +12,15 @@ public interface IGraph<V, E> {
 
 	public ArrayList<Object[]> getEdges();
 
-	public E getLabel(V v1,V v2);
-	
+	public E getLabel(V v1, V v2);
+
 	public ArrayList<V> getNeighbors(V v);
-	
-	public boolean isThereEdge(V v1,V v2);
-	
+
+	public boolean isThereEdge(V v1, V v2);
+
 	public boolean isUndirected();
+
 	public int getNumberOfVertices();
-	public IGraph<V,E> transformToMyOpposite();
+
+	public IGraph<V, E> transformToMyOpposite();
 }
