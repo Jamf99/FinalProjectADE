@@ -121,7 +121,7 @@ public class GraphMatrix<V, E extends Comparable<E>> implements IGraph<V,E> {
 	}
 	@Override
 	public ArrayList<V> getNeighbors(V v) {
-		// TODO Auto-generated method stub
+
 		ArrayList<V>  aux=new ArrayList<V>();
 		int a=valueToint.get(v);
 		for (int i = 0; i < edges.length; i++) {

@@ -54,10 +54,7 @@ public class GraphAdyacen<V, E extends Comparable<E>> implements IGraph<V,E> {
 	public Iterator<Edge<V,E>> edgeIterator(){
 		return edges.iterator();
 	}
-	/**
-	 * 
-	 * @param v
-	 */
+
 	public Vertex<V, E> getVertex(V v) {
 		return graph.get(v);
 	}
@@ -90,7 +87,7 @@ public class GraphAdyacen<V, E extends Comparable<E>> implements IGraph<V,E> {
 	@Override
 	public boolean addVertex(V v) {
 		Vertex<V,E> v11=null;
-		// TODO Auto-generated method stub
+	
 		if(graph.containsKey(v)) {
 			
 			return false;
