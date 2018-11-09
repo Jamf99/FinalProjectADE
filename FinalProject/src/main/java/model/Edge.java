@@ -1,6 +1,6 @@
 package model;
 
-public class Edges <V>{
+public class Edge <V>{
 private V value;
 
 

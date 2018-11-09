@@ -2,11 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
-public class GraphList <V,E>implements InterfaceGraph<V,E>{
+public class GraphList<V, E> implements InterfaceGraph<V, E> {
+
+	public Edge<E> edge;
+	public Vertex<V> vertex;
 
 	@Override
 	public V getVertex() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -19,25 +21,25 @@ public class GraphList <V,E>implements InterfaceGraph<V,E>{
 	@Override
 	public void addEdge(E e, V v1, V v2) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void addVetex(V v1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeEdge(E e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeVertex(V v) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -81,7 +83,5 @@ public class GraphList <V,E>implements InterfaceGraph<V,E>{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	
 
 }
