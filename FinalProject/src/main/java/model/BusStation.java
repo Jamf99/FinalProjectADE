@@ -1,11 +1,12 @@
 package model;
 
-public class BusStation {
+import structures.Queue;
 
-	private Bus bus;
-	
+public class BusStation {
+	private Queue<Bus> bus;
+
 	public BusStation() {
-		
+
 	}
-	
+
 }
