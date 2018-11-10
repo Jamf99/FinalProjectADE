@@ -1,8 +1,6 @@
 package model;
 
-import structures.List;
-
-public class BusStation implements List {
+public class BusStation {
 	
 	private Bus bus;
 	
