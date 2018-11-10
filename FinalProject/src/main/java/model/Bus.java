@@ -3,12 +3,14 @@ package model;
 import structures.PriorityQueue;
 
 public class Bus {
+	
+	private Person person;
+	
 	private PriorityQueue<Boolean, Person> users;
 	private int totalofPasangers;
 	public static int MAX_PASANGERS = 50;
 
 	public Bus() {
-		super();
 		this.users = null;
 		this.totalofPasangers = 0;
 	}
