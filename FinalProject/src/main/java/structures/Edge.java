@@ -1,4 +1,4 @@
-package model;
+package structures;
 
 public class Edge <V>{
 private V value;

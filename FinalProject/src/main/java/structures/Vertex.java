@@ -1,4 +1,4 @@
-package model;
+package structures;
 
 public class Vertex<V> {
 	private V value;
