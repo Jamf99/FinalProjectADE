@@ -1,7 +1,7 @@
 package model;
 
-public class BusStation  {
-	
+public class BusStation {
+
 	private Bus bus;
 	
 	public BusStation() {
