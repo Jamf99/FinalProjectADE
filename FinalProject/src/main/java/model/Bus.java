@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.IsFullException;
 import structures.PriorityQueue;
 
 public class Bus {
@@ -15,14 +16,14 @@ public class Bus {
 		this.totalofPasangers = 0;
 	}
 
-	public void addUsers(Person p) {
+	public void addUsers(Person p) throws IsFullException{
 		if (users.isEmpty()) {
 			users = new PriorityQueue();
 			users.insert(p.isDiscapacitado(), p);
 		} else if(users.getWeight()<MAX_PASANGERS) {
 			users.insert(p.isDiscapacitado(), p);
 		}else {
-			
+			throw new  IsFullException();
 		}
 	}
 
