@@ -1,5 +1,7 @@
 package structures;
 
+import exceptions.EmptyQueueException;
+
 public class PriorityQueue<T extends Comparable<? super T>, E> implements IPriorityQueue<T, E> {
 
 	private PriorityQueueNode<T, E> first;
