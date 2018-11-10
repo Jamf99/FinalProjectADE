@@ -22,9 +22,9 @@ public interface InterfaceGraph<V, E> {
 
 	public ArrayList<E> Dijstra(V v);
 
-	public GraphList Kruskal(V v);
+	public GraphList<V, E> Kruskal(V v);
 
-	public GraphList Prim(V v);
+	public GraphList<V, E> Prim(V v);
 
 	public ArrayList<E> floydWarshall(V v);
 

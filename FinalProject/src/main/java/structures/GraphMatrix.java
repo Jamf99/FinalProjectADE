@@ -59,13 +59,13 @@ public class GraphMatrix<V,E> implements InterfaceGraph<V,E> {
 	}
 
 	@Override
-	public GraphList Kruskal(V v) {
+	public GraphList<V, E> Kruskal(V v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public GraphList Prim(V v) {
+	public GraphList<V, E> Prim(V v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
