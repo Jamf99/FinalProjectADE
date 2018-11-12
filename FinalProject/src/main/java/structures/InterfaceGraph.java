@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public interface InterfaceGraph<V, E> {
 
-	public V getVertex();
+	public V getVertex(V v);
 
-	public E getEdge();
+	public E getEdge(E e);
 
 	public void addEdge(E e, V v1, V v2);
 

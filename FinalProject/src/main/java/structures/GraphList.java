@@ -2,78 +2,75 @@ package structures;
 
 import java.util.ArrayList;
 
-public class GraphList<V, E> implements InterfaceGraph<V, E> {
-
-	public Edge<E> edge;
-	public Vertex<V> vertex;
+public class GraphList<V, E> implements InterfaceGraph<Vertex<V>, Edge<E>> {
 
 	@Override
-	public V getVertex() {
+	public Vertex<V> getVertex(Vertex<V> v) {
 		return null;
 	}
 
 	@Override
-	public E getEdge() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addEdge(E e, V v1, V v2) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addVetex(V v1) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeEdge(E e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeVertex(V v) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public ArrayList<V> BFS(V v) {
+	public Edge<E> getEdge(Edge<E> e) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<V> DFS(V v) {
+	public void addEdge(Edge<E> e, Vertex<V> v1, Vertex<V> v2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addVetex(Vertex<V> v1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeEdge(Edge<E> e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeVertex(Vertex<V> v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Vertex<V>> BFS(Vertex<V> v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<E> Dijstra(V v) {
+	public ArrayList<Vertex<V>> DFS(Vertex<V> v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public GraphList<V, E> Kruskal(V v) {
+	public ArrayList<Edge<E>> Dijstra(Vertex<V> v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public GraphList<V, E> Prim(V v) {
+	public GraphList<Vertex<V>, Edge<E>> Kruskal(Vertex<V> v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<E> floydWarshall(V v) {
+	public GraphList<Vertex<V>, Edge<E>> Prim(Vertex<V> v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Edge<E>> floydWarshall(Vertex<V> v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -83,5 +80,6 @@ public class GraphList<V, E> implements InterfaceGraph<V, E> {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }

@@ -5,13 +5,13 @@ import java.util.ArrayList;
 public class GraphMatrix<V,E> implements InterfaceGraph<V,E> {
 
 	@Override
-	public V getVertex() {
+	public V getVertex(V v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public E getEdge() {
+	public E getEdge(E e) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -82,5 +82,6 @@ public class GraphMatrix<V,E> implements InterfaceGraph<V,E> {
 		return false;
 	}
 
+	
 	
 }
