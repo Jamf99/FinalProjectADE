@@ -2,39 +2,50 @@ package structures;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 
 public class GraphList<V, E> implements InterfaceGraph<V, E> {
 	private boolean directed;
-	private HashMap<Integer, V> graphVertex;
-	private HashMap<Integer, E> graphEdge;
-
+	private HashMap<V, Hashtable<V, Integer>> adyacentList;
+	private Hashtable<V, Integer> edges;
+	
+	public GraphList(boolean directed) {
+		this.directed = directed;
+		adyacentList = new HashMap<V, Hashtable<V, Integer>>();
+	}
+	
 	@Override
 	public V getVertex(int v) {
-		return graphVertex.get(v);
-	}
-
-	public GraphList(boolean directed) {
-		super();
-		this.directed = directed;
-		graphVertex = new HashMap<Integer, V>();
-		graphEdge = new HashMap<Integer, E>();
+		return null;
 	}
 
 	@Override
 	public E getEdge(int e) {
-		return graphEdge.get(e);
+		return null;
 	}
 
 	@Override
-	public void addEdge(E e, int i) {
-
-		graphEdge.put(i, e);
+	public void addEdge(V v1, V v2, int value) {
+		if(adyacentList.containsKey(v1)){
+            adyacentList.get(v1).put(v2, value);
+        }else{
+            edges = new Hashtable<V, Integer>();
+            edges.put(v2, value);
+            adyacentList.put(v1, edges);
+        }
+        if(adyacentList.containsKey(v2)){
+            adyacentList.get(v2).put(v1, value);
+        }else{
+            edges = new Hashtable<V, Integer>();
+            edges.put(v1, value);
+            adyacentList.put(v2, edges);
+        }
 	}
 
 	@Override
-	public void addVetex(V v1) {
-		// TODO Auto-generated method stub
-
+	public void addVertex(V v1) {
+		edges = new Hashtable<V, Integer>();
+		adyacentList.put(v1, edges);
 	}
 
 	@Override
@@ -90,5 +101,7 @@ public class GraphList<V, E> implements InterfaceGraph<V, E> {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 
 }
