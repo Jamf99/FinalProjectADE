@@ -11,6 +11,7 @@ public class Person {
 
 	public Person(String iD, boolean discapacitado) {
 		ID = iD;
+		
 		this.discapacitado = discapacitado;
 	}
 
