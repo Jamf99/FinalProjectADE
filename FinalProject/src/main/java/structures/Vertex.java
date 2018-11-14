@@ -1,6 +1,7 @@
 package structures;
 
 public class Vertex<V> {
+	
 	private V value;
 
 	public V getValue() {
