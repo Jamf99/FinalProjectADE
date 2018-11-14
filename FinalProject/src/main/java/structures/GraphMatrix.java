@@ -17,13 +17,13 @@ public class GraphMatrix<V, E> implements InterfaceGraph<V, E> {
 	}
 
 	@Override
-	public void addEdge(E e, int v2) {
+	public void addEdge(V v1, V v2, int value) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void addVetex(V v1) {
+	public void addVertex(V v1) {
 		// TODO Auto-generated method stub
 
 	}
