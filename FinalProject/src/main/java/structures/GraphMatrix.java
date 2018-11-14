@@ -2,42 +2,42 @@ package structures;
 
 import java.util.ArrayList;
 
-public class GraphMatrix<V,E> implements InterfaceGraph<V,E> {
+public class GraphMatrix<V, E> implements InterfaceGraph<V, E> {
 
 	@Override
-	public V getVertex(V v) {
+	public V getVertex(int v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public E getEdge(E e) {
+	public E getEdge(int e) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void addEdge(E e, V v1, V v2) {
+	public void addEdge(E e, int v2) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void addVetex(V v1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeEdge(E e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeVertex(V v) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -82,6 +82,4 @@ public class GraphMatrix<V,E> implements InterfaceGraph<V,E> {
 		return false;
 	}
 
-	
-	
 }
