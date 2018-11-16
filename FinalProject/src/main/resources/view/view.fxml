@@ -180,5 +180,70 @@
             <Font size="17.0" />
          </font>
       </Text>
+      <Text fill="#3414c7" layoutX="521.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="19">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="607.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="47">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="674.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="29">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="740.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="821.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="62">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="817.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="47">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="906.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="90">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="847.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="57">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="917.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="999.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="37">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="948.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="40">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="1078.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="14">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="1066.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="38">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
