@@ -2,6 +2,7 @@ package structures;
 import java.util.HashMap;
 import java.util.Hashtable;
 
+
 public class GraphList<V, E extends Comparable<E>> implements InterfaceGraph<V, E> {
 	private boolean directed;
 	private HashMap<V, Hashtable<V, Integer>> adyacentList;
@@ -14,20 +15,30 @@ public class GraphList<V, E extends Comparable<E>> implements InterfaceGraph<V, 
 	
 	@Override
 	public void addEdge(V v1, V v2, int value) {
-		if(adyacentList.containsKey(v1)){
-            adyacentList.get(v1).put(v2, value);
-        }else{
-            edges = new Hashtable<V, Integer>();
-            edges.put(v2, value);
-            adyacentList.put(v1, edges);
-        }
-        if(adyacentList.containsKey(v2)){
-            adyacentList.get(v2).put(v1, value);
-        }else{
-            edges = new Hashtable<V, Integer>();
-            edges.put(v1, value);
-            adyacentList.put(v2, edges);
-        }
+		Vertex<V,E> v11=null;
+		Vertex<V,E> v22=null;
+		if(graph.containsKey(v1)) {
+			v11=graph.get(v1);
+		}else {
+			v11=new Vertex<V,E>(v1);
+			graph.put(v1,v11);
+		}
+		if(graph.containsKey(v2)) {
+			v22=graph.get(v2);
+		}else {
+			v22=new Vertex<V,E>(v2);	
+			graph.put(v2,v22);
+		}
+		if(v11.containsEdge(e,v22)) {
+			return false;
+		}else {
+			Edge<V,E> edge1=new Edge<V,E>(e,v11,v22);
+			v11.addEdge(edge1,v22);
+			edges.add(edge1);
+			if(undirected) {
+				Edge<V,E> edge2=new Edge<V,E>(e,v22,v11);
+				v22.addEdge(edge2,v11);				
+			}
 	}
 
 	@Override
