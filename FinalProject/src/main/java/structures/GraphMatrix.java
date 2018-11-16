@@ -1,13 +1,26 @@
 package structures;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GraphMatrix<V, E> implements InterfaceGraph<V, E> {
+	private boolean[][] matrix;
+	private HashMap<V, Integer> vertex;
+	private HashMap<Integer, V> vertex1;
+	private int cant;
+
+	public GraphMatrix() {
+		super();
+		cant = 0;
+		matrix = new boolean[cant][cant];
+		vertex = new HashMap();
+		vertex1 = new HashMap();
+	}
 
 	@Override
 	public void addEdge(V v1, V v2, int value) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -26,42 +39,6 @@ public class GraphMatrix<V, E> implements InterfaceGraph<V, E> {
 	public void removeVertex(V v) {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public ArrayList<V> BFS(V v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<V> DFS(V v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<E> Dijstra(V v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public GraphList<V, E> Kruskal(V v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public GraphList<V, E> Prim(V v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<E> floydWarshall(V v) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
