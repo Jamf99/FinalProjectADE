@@ -1,10 +1,8 @@
 package structures;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 
-public class GraphList<V, E> implements InterfaceGraph<V, E> {
+public class GraphList<V, E extends Comparable<E>> implements InterfaceGraph<V, E> {
 	private boolean directed;
 	private HashMap<V, Hashtable<V, Integer>> adyacentList;
 	private Hashtable<V, Integer> edges;
@@ -47,42 +45,6 @@ public class GraphList<V, E> implements InterfaceGraph<V, E> {
 	@Override
 	public void removeVertex(V v) {
 		adyacentList.remove(v);
-	}
-
-	@Override
-	public ArrayList<V> BFS(V v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<V> DFS(V v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<E> Dijstra(V v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public GraphList<V, E> Kruskal(V v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public GraphList<V, E> Prim(V v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<E> floydWarshall(V v) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
