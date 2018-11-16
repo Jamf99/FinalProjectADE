@@ -12,17 +12,5 @@ public interface InterfaceGraph<V, E> {
 
 	public void removeVertex(V v);
 
-	public ArrayList<V> BFS(V v);
-
-	public ArrayList<V> DFS(V v);
-
-	public ArrayList<E> Dijstra(V v);
-
-	public GraphList<V, E> Kruskal(V v);
-
-	public GraphList<V, E> Prim(V v);
-
-	public ArrayList<E> floydWarshall(V v);
-
 	public boolean IsUndirected();
 }
