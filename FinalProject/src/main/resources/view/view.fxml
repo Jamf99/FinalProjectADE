@@ -102,7 +102,7 @@
             <Font size="17.0" />
          </font>
       </Text>
-      <Text layoutX="867.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L">
+      <Text layoutX="830.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L">
          <font>
             <Font size="17.0" />
          </font>
@@ -122,12 +122,60 @@
             <Font size="17.0" />
          </font>
       </Text>
-      <Text layoutX="962.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S">
+      <Text layoutX="992.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S">
          <font>
             <Font size="17.0" />
          </font>
       </Text>
-      <Text fill="#3414c7" layoutX="173.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30">
+      <Text fill="#3414c7" layoutX="173.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="49">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="167.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="25">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="260.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="276.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="390.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="102">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Line endX="-182.0" endY="-195.0" layoutX="328.0" layoutY="335.0" startX="-182.0" startY="56.0" />
+      <Text fill="#3414c7" layoutX="123.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="80">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Line endX="67.0" endY="-100.0" layoutX="929.0" layoutY="224.0" startX="-71.0" startY="-126.0" />
+      <Line endX="34.0" endY="209.0" layoutX="938.0" layoutY="234.0" startX="-198.0" startY="221.0" />
+      <Text fill="#3414c7" layoutX="491.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="140">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="377.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="17">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="490.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#3414c7" layoutX="573.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30">
          <font>
             <Font size="17.0" />
          </font>
