@@ -17,9 +17,28 @@ public class GraphMatrix<V, E> implements InterfaceGraph<V, E> {
 		vertex1 = new HashMap();
 	}
 
+	public void expandMatrix(V v) {
+		boolean[][] aux = new boolean[cant + 1][cant + 1];
+		vertex.put(v, aux.length - 1);
+		vertex1.put(aux.length - 1, v);
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix.length; j++) {
+				aux[i][j] = matrix[i][j];
+			}
+		}
+
+		matrix = aux;
+	}
+
 	@Override
 	public void addEdge(V v1, V v2, int value) {
-		// TODO Auto-generated method stub
+		if (!vertex.containsKey(v1)) {
+			expandMatrix(v1);
+		}
+		if (!vertex.containsKey(v2)) {
+			expandMatrix(v2);
+		}
+		matrix[vertex.get(v1)][vertex.get(v2)] = true;
 
 	}
 
