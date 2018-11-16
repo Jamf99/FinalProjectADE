@@ -39,6 +39,8 @@ public class GraphList<V, E extends Comparable<E>> implements InterfaceGraph<V, 
 				Edge<V,E> edge2=new Edge<V,E>(e,v22,v11);
 				v22.addEdge(edge2,v11);				
 			}
+		}
+			
 	}
 
 	@Override
