@@ -5,18 +5,6 @@ import java.util.ArrayList;
 public class GraphMatrix<V, E> implements InterfaceGraph<V, E> {
 
 	@Override
-	public V getVertex(int v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public E getEdge(int e) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void addEdge(V v1, V v2, int value) {
 		// TODO Auto-generated method stub
 		

@@ -4,10 +4,6 @@ import java.util.ArrayList;
 
 public interface InterfaceGraph<V, E> {
 
-	public V getVertex(int v);
-
-	public E getEdge(int e);
-
 	public void addEdge(V v1, V v2, int value);
 
 	public void addVertex(V v1);

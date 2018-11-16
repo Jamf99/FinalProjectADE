@@ -15,16 +15,6 @@ public class GraphList<V, E> implements InterfaceGraph<V, E> {
 	}
 	
 	@Override
-	public V getVertex(int v) {
-		return null;
-	}
-
-	@Override
-	public E getEdge(int e) {
-		return null;
-	}
-
-	@Override
 	public void addEdge(V v1, V v2, int value) {
 		if(adyacentList.containsKey(v1)){
             adyacentList.get(v1).put(v2, value);
@@ -47,7 +37,7 @@ public class GraphList<V, E> implements InterfaceGraph<V, E> {
 		edges = new Hashtable<V, Integer>();
 		adyacentList.put(v1, edges);
 	}
-
+	
 	@Override
 	public void removeEdge(E e) {
 		// TODO Auto-generated method stub
@@ -56,8 +46,7 @@ public class GraphList<V, E> implements InterfaceGraph<V, E> {
 
 	@Override
 	public void removeVertex(V v) {
-		// TODO Auto-generated method stub
-
+		adyacentList.remove(v);
 	}
 
 	@Override
