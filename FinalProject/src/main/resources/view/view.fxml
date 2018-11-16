@@ -127,5 +127,10 @@
             <Font size="17.0" />
          </font>
       </Text>
+      <Text fill="#3414c7" layoutX="173.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
