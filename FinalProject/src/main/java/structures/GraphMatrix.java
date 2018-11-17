@@ -1,68 +1,78 @@
 package structures;
 
-import java.util.HashMap;
+import java.util.HashSet;
 
 public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> implements InterfaceGraph<V, E> {
-	private boolean[][] matrix;
-	private HashMap<V, Integer> vertex;
-	private HashMap<Integer, V> vertex1;
-	private int cant;
+	private Edge<Vertex<V>, Edge<Vertex<V>, E>>[][] graph;
+	private HashSet<Vertex<V>> vertexs;
+	private int cantidad;
+	private HashTable<Vertex<V>, Integer> numbers;
 
 	public GraphMatrix() {
 		super();
-		cant = 0;
-		matrix = new boolean[cant][cant];
-		vertex = new HashMap();
-		vertex1 = new HashMap();
+		graph = new Edge[0][0];
+		vertexs = new HashSet<Vertex<V>>();
+		numbers = new HashTable<Vertex<V>, Integer>(0);
+	}
+
+	public GraphMatrix(int cantidad) {
+		super();
+		this.cantidad = cantidad;
+		graph = new Edge[cantidad][cantidad];
+		vertexs = new HashSet<Vertex<V>>();
+		numbers = new HashTable<Vertex<V>, Integer>(cantidad);
 	}
 
 	public void expandMatrix(V v) {
-		boolean[][] aux = new boolean[cant + 1][cant + 1];
-		vertex.put(v, aux.length - 1);
-		vertex1.put(aux.length - 1, v);
-		for (int i = 0; i < matrix.length; i++) {
-			for (int j = 0; j < matrix.length; j++) {
-				aux[i][j] = matrix[i][j];
+		Edge<Vertex<V>, Edge<Vertex<V>, E>>[][] aux = new Edge[cantidad + 1][cantidad + 1];
+		numbers.put(v, aux.length - 1);
+		for (int i = 0; i < graph.length; i++) {
+			for (int j = 0; j < graph.length; j++) {
+				aux[i][j] = graph[i][j];
 			}
 		}
-
-		matrix = aux;
+		graph = aux;
 	}
 
 	@Override
 	public void addEdge(Vertex<V> v1, Vertex<V> v2, E value) {
-		if (!vertex.containsKey(v1)) {
-			expandMatrix(v1.getValue());
+		Edge<Vertex<V>, E> edge = new Edge<Vertex<V>, E>(v2, value);
+		for (int i = 0; i < graph.length; i++) {
+			for (int j = 0; j < graph.length; j++) {
+				if (graph[i][j].getEnding() == v1) {
+					graph[i][j].setValue(edge);
+
+				}
+			}
 		}
-		if (!vertex.containsKey(v2)) {
-			expandMatrix(v2.getValue());
-		}
-		matrix[vertex.get(v1)][vertex.get(v2)] = true;
 
 	}
 
 	@Override
-	public void addVertex(Vertex<V> v1) {
-		// TODO Auto-generated method stub
+	public void addVertex(Vertex<V> v) {
 
 	}
 
 	@Override
 	public void removeEdge(Edge<Vertex<V>, E> e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void removeVertex(Vertex<V> v) {
+		vertexs.remove(v);
+	}
+
+	@Override
+	public void BFS(Vertex<V> s) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void BFS(Vertex<V> origin, Vertex<V> ending) {
+	public void DFS(Vertex<V> s) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }
