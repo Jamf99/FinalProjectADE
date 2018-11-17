@@ -77,5 +77,34 @@ public class GraphList<V extends Comparable<V>, E extends Comparable<E>> impleme
 			}
 		}
 	}
+	
+	@Override
+	public void DFS(Vertex<V> s) {
+		Stack<Vertex<V>> queue = new Stack<Vertex<V>>();
+		Vertex<V>[] visited = new Vertex[graph.size()];
+		Vertex<V> aux = null;
+		if(graph.containsKey(s)) {
+			queue.push(s);
+			while(!queue.isEmpty()) {
+				boolean flag = false;
+				aux = queue.pop();
+				for(int j = 0; j < visited.length && !flag; j++) {
+					if(visited[j] != null) {
+						if(visited[j].getValue().compareTo(aux.getValue()) == 0) {
+							flag = true;
+						}
+					}else if(!flag) {
+						visited[j] = aux;
+					}
+				}
+				if(!flag) {
+					LinkedHashSet<Edge<Vertex<V>,E>> aux2 = graph.get(aux);
+					for(Edge<Vertex<V>, E> edges : aux2) {
+						queue.push(edges.getEnding());
+					}
+				}
+			}
+		}
+	}
 
 }

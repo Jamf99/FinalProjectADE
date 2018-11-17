@@ -12,6 +12,6 @@ public interface InterfaceGraph<V extends Comparable<V>, E extends Comparable<E>
 	
 	public void BFS(Vertex<V> s);
 	
-	
+	public void DFS(Vertex<V> s);
 	
 }
