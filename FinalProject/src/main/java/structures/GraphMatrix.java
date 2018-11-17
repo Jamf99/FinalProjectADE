@@ -1,9 +1,8 @@
 package structures;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-public class GraphMatrix<V, E> implements InterfaceGraph<V, E> {
+public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> implements InterfaceGraph<V, E> {
 	private boolean[][] matrix;
 	private HashMap<V, Integer> vertex;
 	private HashMap<Integer, V> vertex1;
@@ -31,39 +30,39 @@ public class GraphMatrix<V, E> implements InterfaceGraph<V, E> {
 	}
 
 	@Override
-	public void addEdge(V v1, V v2, int value) {
+	public void addEdge(Vertex<V> v1, Vertex<V> v2, E value) {
 		if (!vertex.containsKey(v1)) {
-			expandMatrix(v1);
+			expandMatrix(v1.getValue());
 		}
 		if (!vertex.containsKey(v2)) {
-			expandMatrix(v2);
+			expandMatrix(v2.getValue());
 		}
 		matrix[vertex.get(v1)][vertex.get(v2)] = true;
 
 	}
 
 	@Override
-	public void addVertex(V v1) {
+	public void addVertex(Vertex<V> v1) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void removeEdge(E e) {
+	public void removeEdge(Edge<Vertex<V>, E> e) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void removeVertex(V v) {
+	public void removeVertex(Vertex<V> v) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public boolean IsUndirected() {
+	public void BFS(Vertex<V> origin, Vertex<V> ending) {
 		// TODO Auto-generated method stub
-		return false;
+
 	}
 
 }
