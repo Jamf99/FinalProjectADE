@@ -1,6 +1,7 @@
 package structures;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 public class GraphList<V extends Comparable<V>, E extends Comparable<E>> implements InterfaceGraph<V, E>{
 	
@@ -51,11 +52,28 @@ public class GraphList<V extends Comparable<V>, E extends Comparable<E>> impleme
 	@Override
 	public void BFS(Vertex<V> s) {
 		Queue<Vertex<V>> queue = new Queue<Vertex<V>>();
-		ArrayList<V> visited = new ArrayList<V>();
+		Vertex<V>[] visited = new Vertex[graph.size()];
+		Vertex<V> aux = null;
 		if(graph.containsKey(s)) {
 			queue.enqueue(s);
 			while(!queue.isEmpty()) {
-				
+				boolean flag = false;
+				aux = queue.dequeue();
+				for(int j = 0; j < visited.length && !flag; j++) {
+					if(visited[j] != null) {
+						if(visited[j].getValue().compareTo(aux.getValue()) == 0) {
+							flag = true;
+						}
+					}else if(!flag) {
+						visited[j] = aux;
+					}
+				}
+				if(!flag) {
+					LinkedHashSet<Edge<Vertex<V>,E>> aux2 = graph.get(aux);
+					for(Edge<Vertex<V>, E> edges : aux2) {
+						queue.enqueue(edges.getEnding());
+					}
+				}
 			}
 		}
 	}
