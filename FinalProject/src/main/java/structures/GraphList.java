@@ -37,7 +37,7 @@ public class GraphList<V extends Comparable<V>, E extends Comparable<E>> impleme
 		}
 	}
 
-	public void removeEdge(Edge<Vertex<V>,E> e) {
+	public void removeEdge(Vertex<V> v1, Vertex<V> v2) {
 		
 	}
 
@@ -103,6 +103,14 @@ public class GraphList<V extends Comparable<V>, E extends Comparable<E>> impleme
 				}
 			}
 		}
+	}
+
+	public HashMap<Vertex<V>, LinkedHashSet<Edge<Vertex<V>, E>>> getGraph() {
+		return graph;
+	}
+
+	public LinkedHashSet<Edge<Vertex<V>, E>> getEdges() {
+		return edges;
 	}
 
 }

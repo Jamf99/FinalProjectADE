@@ -5,16 +5,19 @@ public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> imple
 	
 	private Edge<Vertex<V> ,E>[][] matrix;
 	private Hashtable<Vertex<V>, Integer> numbers;
+	private boolean isDirected;
 
-	public GraphMatrix() {
+	public GraphMatrix(boolean isDirected) {
+		this.isDirected = isDirected;
 		matrix = new Edge[numbers.size()][numbers.size()];
 		numbers = new Hashtable<Vertex<V>, Integer>();
+		
 	}
 
-	public void expandMatrix() {
+	private void expandMatrix() {
 		Edge<Vertex<V>, E>[][] aux = new Edge[numbers.size() + 1][numbers.size() + 1];
-		for (int i = 0; i < aux.length; i++) {
-			for (int j = 0; j < aux[0].length; j++) {
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[0].length; j++) {
 				aux[i][j] = matrix[i][j];
 			}
 		}
@@ -25,10 +28,11 @@ public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> imple
 	public void addEdge(Vertex<V> v1, Vertex<V> v2, E value) {
 		if(numbers.containsKey(v1) && numbers.containsKey(v2)) {
 			Edge<Vertex<V>, E> newEdge = new Edge<Vertex<V>, E>(v2, value);
-			for(int i = 0; i < matrix.length; i++) {
-				for(int j = 0; j < matrix.length; j++) {
-					matrix[]
-				}
+			if(isDirected) {
+				matrix[numbers.get(v1).intValue()][numbers.get(v2).intValue()] = newEdge;
+			} else{
+				matrix[numbers.get(v1).intValue()][numbers.get(v2).intValue()] = newEdge;
+				matrix[numbers.get(v2).intValue()][numbers.get(v1).intValue()] = newEdge;
 			}
 		}
 	}
@@ -40,8 +44,8 @@ public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> imple
 	}
 
 	@Override
-	public void removeEdge(Edge<Vertex<V>, E> e) {
-
+	public void removeEdge(Vertex<V> v1, Vertex<V> v2) {
+		
 	}
 
 	@Override
