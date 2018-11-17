@@ -1,7 +1,7 @@
 package structures;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
-public class GraphList<V extends Comparable<V>, E extends Comparable<E>> {
+public class GraphList<V extends Comparable<V>, E extends Comparable<E>> implements InterfaceGraph<V, E>{
 	
 	private HashMap<Vertex<V>, LinkedHashSet<Edge<Vertex<V>,E>>> graph;
 	private LinkedHashSet<Edge<Vertex<V>,E>> edges;
@@ -11,6 +11,7 @@ public class GraphList<V extends Comparable<V>, E extends Comparable<E>> {
 		edges = null;
 	}
 	
+	@Override
 	public void addEdge(Vertex<V> v1, Vertex<V> v2, E edgeValue) {
 		Edge<Vertex<V>,E> edge = new Edge<Vertex<V>, E>(v2, edgeValue);
 		if(graph.containsKey(v1)){
@@ -29,23 +30,25 @@ public class GraphList<V extends Comparable<V>, E extends Comparable<E>> {
         }
 	}
 
+	@Override
 	public void addVertex(Vertex<V> v1) {
 		if(!graph.containsKey(v1)) {
 			graph.put(v1, edges);
 		}
+	}
+
+	public void removeEdge(Edge<Vertex<V>,E> e) {
 		
 	}
 
-	public void removeEdge(E e) {
-		
-	}
-
-	public void removeVertex(V v) {
+	public void removeVertex(Vertex<V> v) {
 	
 	}
 
-	public boolean IsUndirected() {
-		// TODO Auto-generated method stub
-		return false;
+	@Override
+	public void BFS(Vertex<V> origin, Vertex<V> ending) {
+		
 	}
+
+
 }
