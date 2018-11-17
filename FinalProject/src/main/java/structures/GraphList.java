@@ -37,7 +37,7 @@ public class GraphList<V extends Comparable<V>, E extends Comparable<E>> impleme
 		}
 	}
 
-	public void removeEdge(Vertex<V> v1, Vertex<V> v2) {
+	public void removeEdge(Edge<Vertex<V>,E> e) {
 		
 	}
 

@@ -6,7 +6,7 @@ public interface InterfaceGraph<V extends Comparable<V>, E extends Comparable<E>
 
 	public void addVertex(Vertex<V> v1);
 
-	public void removeEdge(Vertex<V> v1, Vertex<V> v2);
+	public void removeEdge(Edge<Vertex<V>,E> e);
 
 	public void removeVertex(Vertex<V> v);
 	
