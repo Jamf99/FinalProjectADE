@@ -1,4 +1,5 @@
 package structures;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 public class GraphList<V extends Comparable<V>, E extends Comparable<E>> implements InterfaceGraph<V, E>{
@@ -42,13 +43,21 @@ public class GraphList<V extends Comparable<V>, E extends Comparable<E>> impleme
 	}
 
 	public void removeVertex(Vertex<V> v) {
-	
+		if(graph.containsKey(v)) {
+			graph.remove(v);
+		}
 	}
 
 	@Override
-	public void BFS(Vertex<V> origin, Vertex<V> ending) {
-		
+	public void BFS(Vertex<V> s) {
+		Queue<Vertex<V>> queue = new Queue<Vertex<V>>();
+		ArrayList<V> visited = new ArrayList<V>();
+		if(graph.containsKey(s)) {
+			queue.enqueue(s);
+			while(!queue.isEmpty()) {
+				
+			}
+		}
 	}
-
 
 }

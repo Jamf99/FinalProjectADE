@@ -10,7 +10,8 @@ public interface InterfaceGraph<V extends Comparable<V>, E extends Comparable<E>
 
 	public void removeVertex(Vertex<V> v);
 	
-	public void BFS(Vertex<V> origin, Vertex<V> ending);
+	public void BFS(Vertex<V> s);
+	
 	
 	
 }
