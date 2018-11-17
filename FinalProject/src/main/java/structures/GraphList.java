@@ -1,7 +1,5 @@
 package structures;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 public class GraphList<V extends Comparable<V>, E extends Comparable<E>> implements InterfaceGraph<V, E>{
 	
@@ -10,7 +8,7 @@ public class GraphList<V extends Comparable<V>, E extends Comparable<E>> impleme
 	
 	public GraphList() {
 		graph = new HashMap<Vertex<V>, LinkedHashSet<Edge<Vertex<V>,E>>>();
-		edges = null;
+		edges = new LinkedHashSet<Edge<Vertex<V>, E>>();
 	}
 	
 	@Override

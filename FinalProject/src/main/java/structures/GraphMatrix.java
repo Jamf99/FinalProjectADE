@@ -1,56 +1,40 @@
 package structures;
-
-import java.util.HashSet;
+import java.util.Hashtable;
 
 public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> implements InterfaceGraph<V, E> {
-	private Edge<Vertex<V>, Edge<Vertex<V>, E>>[][] graph;
-	private HashSet<Vertex<V>> vertexs;
-	private int cantidad;
-	private HashTable<Vertex<V>, Integer> numbers;
+	
+	private Edge<Vertex<V> ,E>[][] matrix;
+	private Hashtable<Vertex<V>, Integer> numbers;
 
 	public GraphMatrix() {
-		super();
-		graph = new Edge[0][0];
-		vertexs = new HashSet<Vertex<V>>();
-		numbers = new HashTable<Vertex<V>, Integer>(0);
+		matrix = new Edge[numbers.size()][numbers.size()];
+		numbers = new Hashtable<Vertex<V>, Integer>();
 	}
 
-	public GraphMatrix(int cantidad) {
-		super();
-		this.cantidad = cantidad;
-		graph = new Edge[cantidad][cantidad];
-		vertexs = new HashSet<Vertex<V>>();
-		numbers = new HashTable<Vertex<V>, Integer>(cantidad);
-	}
-
-	public void expandMatrix(V v) {
-		Edge<Vertex<V>, Edge<Vertex<V>, E>>[][] aux = new Edge[cantidad + 1][cantidad + 1];
-		numbers.put(v, aux.length - 1);
-		for (int i = 0; i < graph.length; i++) {
-			for (int j = 0; j < graph.length; j++) {
-				aux[i][j] = graph[i][j];
+	public void expandMatrix() {
+		Edge<Vertex<V>, E>[][] aux = new Edge[numbers.size() + 1][numbers.size() + 1];
+		for (int i = 0; i < aux.length; i++) {
+			for (int j = 0; j < aux[0].length; j++) {
+				aux[i][j] = matrix[i][j];
 			}
 		}
-		graph = aux;
+		matrix = aux;
 	}
 
 	@Override
 	public void addEdge(Vertex<V> v1, Vertex<V> v2, E value) {
-		Edge<Vertex<V>, E> edge = new Edge<Vertex<V>, E>(v2, value);
-		for (int i = 0; i < graph.length; i++) {
-			for (int j = 0; j < graph.length; j++) {
-				if (graph[i][j].getEnding() == v1) {
-					graph[i][j].setValue(edge);
-
-				}
+		Edge<Vertex<V>, E> newEdge = new Edge<Vertex<V>, E>(v2, value);
+		for(int i = 0; i < matrix.length; i++) {
+			for(int j = 0; j < matrix.length; j++) {
+				
 			}
 		}
-
 	}
 
 	@Override
 	public void addVertex(Vertex<V> v) {
-
+		numbers.put(v, numbers.size()+1);
+		expandMatrix();
 	}
 
 	@Override
@@ -60,7 +44,7 @@ public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> imple
 
 	@Override
 	public void removeVertex(Vertex<V> v) {
-		vertexs.remove(v);
+	
 	}
 
 	@Override
