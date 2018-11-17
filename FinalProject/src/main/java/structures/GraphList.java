@@ -104,6 +104,11 @@ public class GraphList<V extends Comparable<V>, E extends Comparable<E>> impleme
 			}
 		}
 	}
+	
+	@Override
+	public int[] dijkstra(Vertex<V> origin) {
+		return null;
+	}
 
 	public HashMap<Vertex<V>, LinkedHashSet<Edge<Vertex<V>, E>>> getGraph() {
 		return graph;

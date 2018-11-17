@@ -55,7 +55,9 @@ public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> imple
 
 	@Override
 	public void removeEdge(Edge<Vertex<V>, E> e) {
-		
+		for(int i = 0; i < matrix.length; i++) {
+			
+		}
 	}
 
 	@Override
@@ -66,14 +68,73 @@ public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> imple
 
 	@Override
 	public void BFS(Vertex<V> s) {
-		// TODO Auto-generated method stub
-
+		Queue<Vertex<V>> queue = new Queue<Vertex<V>>();
+		Vertex<V>[] visited = new Vertex[numbers.size()];
+		Vertex<V> aux = null;
+		if(numbers.containsKey(s)) {
+			queue.enqueue(s);
+			while(!queue.isEmpty()) {
+				boolean flag = false;
+				aux = queue.dequeue();
+				for(int j = 0; j < visited.length && !flag; j++) {
+					if(visited[j] != null) {
+						if(visited[j].getValue().compareTo(aux.getValue()) == 0) {
+							flag = true;
+						}
+					}else if(!flag) {
+						visited[j] = aux;
+					}
+				}
+				if(!flag) {
+					if(numbers.containsKey(aux)) {
+						int pos = numbers.get(aux).intValue();
+						for(int i = 0; i < matrix[0].length; i++) {
+							if(matrix[pos][i] != null) {
+								queue.enqueue(matrix[pos][i].getEnding());
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	@Override
 	public void DFS(Vertex<V> s) {
-		// TODO Auto-generated method stub
-		
+		Stack<Vertex<V>> stack = new Stack<Vertex<V>>();
+		Vertex<V>[] visited = new Vertex[numbers.size()];
+		Vertex<V> aux = null;
+		if(numbers.containsKey(s)) {
+			stack.push(s);
+			while(!stack.isEmpty()) {
+				boolean flag = false;
+				aux = stack.pop();
+				for(int j = 0; j < visited.length && !flag; j++) {
+					if(visited[j] != null) {
+						if(visited[j].getValue().compareTo(aux.getValue()) == 0) {
+							flag = true;
+						}
+					}else if(!flag) {
+						visited[j] = aux;
+					}
+				}
+				if(!flag) {
+					if(numbers.containsKey(aux)) {
+						int pos = numbers.get(aux).intValue();
+						for(int i = 0; i < matrix[0].length; i++) {
+							if(matrix[pos][i] != null) {
+								stack.push(matrix[pos][i].getEnding());
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	@Override
+	public int[] dijkstra(Vertex<V> origin) {
+		return null;
 	}
 
 }

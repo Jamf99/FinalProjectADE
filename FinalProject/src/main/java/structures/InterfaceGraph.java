@@ -14,4 +14,6 @@ public interface InterfaceGraph<V extends Comparable<V>, E extends Comparable<E>
 	
 	public void DFS(Vertex<V> s);
 	
+	public int[] dijkstra(Vertex<V> origin);
+	
 }
