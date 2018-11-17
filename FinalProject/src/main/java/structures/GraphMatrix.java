@@ -23,10 +23,12 @@ public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> imple
 
 	@Override
 	public void addEdge(Vertex<V> v1, Vertex<V> v2, E value) {
-		Edge<Vertex<V>, E> newEdge = new Edge<Vertex<V>, E>(v2, value);
-		for(int i = 0; i < matrix.length; i++) {
-			for(int j = 0; j < matrix.length; j++) {
-				
+		if(numbers.containsKey(v1) && numbers.containsKey(v2)) {
+			Edge<Vertex<V>, E> newEdge = new Edge<Vertex<V>, E>(v2, value);
+			for(int i = 0; i < matrix.length; i++) {
+				for(int j = 0; j < matrix.length; j++) {
+					matrix[]
+				}
 			}
 		}
 	}
