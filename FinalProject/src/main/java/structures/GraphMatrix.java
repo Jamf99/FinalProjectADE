@@ -10,13 +10,13 @@ public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> imple
 
 	public GraphMatrix(boolean isDirected) {
 		this.isDirected = isDirected;
-		matrix = new Edge[numbers.size()][numbers.size()];
 		numbers = new Hashtable<Vertex<V>, Integer>();
-
+		matrix = new Edge[numbers.size()][numbers.size()];
 	}
 
 	private void expandMatrix() {
 		Edge<Vertex<V>, E>[][] aux = new Edge[numbers.size() + 1][numbers.size() + 1];
+		matrix = aux;
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
 				aux[i][j] = matrix[i][j];

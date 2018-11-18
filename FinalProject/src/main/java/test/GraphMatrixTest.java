@@ -12,7 +12,7 @@ class GraphMatrixTest extends TestCase {
 	private GraphMatrix<String, Integer> graphMatrix;
 	
 	private void stage1() {
-		graphMatrix = new GraphMatrix<String, Integer>(true);
+		graphMatrix = new GraphMatrix<String, Integer>(false);
 	}
 	
 	@Test
@@ -22,17 +22,29 @@ class GraphMatrixTest extends TestCase {
 	}
 	
 	private void stage2() {
-		graphMatrix = new GraphMatrix<String, Integer>(true);
+		graphMatrix = new GraphMatrix<String, Integer>(false);
 	}
 	
 	@Test
 	public void testAddEdge2() {
 		stage2();
 		Vertex<String> vertex1 = new Vertex<String>("A");
+		graphMatrix.addVertex(vertex1);
 		Vertex<String> vertex2 = new Vertex<String>("B");
-		Edge<String, Integer> edge = new Edge<String, Integer>("C", 50);
+		graphMatrix.addVertex(vertex2);
+		Edge<Vertex<String>, Integer> edge = new Edge<Vertex<String>, Integer>(vertex2, 50);
 		graphMatrix.addEdge(vertex1, vertex2, edge.getValue());
-		assertTrue(graphMatrix.getMatrix().length == 0);
+		boolean flag = false;
+		for(int i = 0; i < graphMatrix.getMatrix().length && !flag; i++) {
+			for (int j = 0; j < graphMatrix.getMatrix()[0].length && !flag; j++) {
+				if(graphMatrix.getMatrix()[i][j] != null) {
+					if(graphMatrix.getMatrix()[i][j].compareTo(edge) == 0) {
+						flag = true;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 	
 	private void stage3() {
@@ -44,7 +56,7 @@ class GraphMatrixTest extends TestCase {
 		stage3();
 		Vertex<String> vertex1 = new Vertex<String>("A");
 		graphMatrix.addVertex(vertex1);
-		assertTrue(graphMatrix.getMatrix().length == 1);
+		assertTrue(graphMatrix.getNumbers().size() == 1);
 	}
 	
 }
