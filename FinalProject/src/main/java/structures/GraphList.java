@@ -1,6 +1,8 @@
 package structures;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.LinkedHashSet;
+import java.util.PriorityQueue;
 public class GraphList<V extends Comparable<V>, E extends Comparable<E>> implements InterfaceGraph<V, E>{
 	
 	private HashMap<Vertex<V>, LinkedHashSet<Edge<Vertex<V>,E>>> graph;
@@ -107,7 +109,21 @@ public class GraphList<V extends Comparable<V>, E extends Comparable<E>> impleme
 	
 	@Override
 	public int[] dijkstra(Vertex<V> origin) {
-		return null;
+		PriorityQueue<Vertex<V>> queue = new PriorityQueue<Vertex<V>>();
+		int[] distances = new int[graph.size()+1];
+		Hashtable<Integer, Vertex<V>> pairs = new Hashtable<Integer, Vertex<V>>();
+		
+		Vertex<V>[] visited = new Vertex[graph.size()];
+		for(int i = 0; i < distances.length; i++) {
+			distances[i] = Integer.MAX_VALUE; 
+		}
+		Vertex<V> aux = null;
+		queue.add(origin);
+		while(!queue.isEmpty()) {
+			aux = queue.poll();
+			int weight = aux.ge
+		}
+		return distances;
 	}
 
 	public HashMap<Vertex<V>, LinkedHashSet<Edge<Vertex<V>, E>>> getGraph() {
