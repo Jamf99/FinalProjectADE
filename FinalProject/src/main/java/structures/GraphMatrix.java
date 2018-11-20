@@ -1,11 +1,13 @@
 package structures;
 
 import java.util.Hashtable;
+import java.util.LinkedList;
 
 public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> implements InterfaceGraph<V, E> {
 
 	private Edge<Vertex<V>, E>[][] matrix;
 	private Hashtable<Vertex<V>, Integer> numbers;
+	private Vertex<V>[] visits;
 	private boolean isDirected;
 
 	public GraphMatrix(boolean isDirected) {
@@ -67,37 +69,49 @@ public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> imple
 		comprimeMatrix();
 	}
 
+	
+	
 	@Override
 	public void BFS(Vertex<V> s) {
-		Queue<Vertex<V>> queue = new Queue<Vertex<V>>();
+		visits = new Vertex[numbers.size()];
+		
+		java.util.Queue<Vertex<V>> queue = new LinkedList<Vertex<V>>();
 		Vertex<V>[] visited = new Vertex[numbers.size()];
 		Vertex<V> aux = null;
 		if (numbers.containsKey(s)) {
-			queue.enqueue(s);
+			queue.add(s);
 			while (!queue.isEmpty()) {
 				boolean flag = false;
-				aux = queue.dequeue();
-				for (int j = 0; j < visited.length && !flag; j++) {
+				boolean flag2 = true;
+				aux = queue.remove();
+				for (int j = 0; j < visited.length && !flag && flag2; j++) {
 					if (visited[j] != null) {
 						if (visited[j].getValue().compareTo(aux.getValue()) == 0) {
 							flag = true;
+							flag2 = false;
 						}
 					} else if (!flag) {
 						visited[j] = aux;
+						flag2 = false;
 					}
 				}
-				if (!flag) {
+				if (!flag2 && !flag) {
 					if (numbers.containsKey(aux)) {
 						int pos = numbers.get(aux).intValue();
 						for (int i = 0; i < matrix[0].length; i++) {
 							if (matrix[pos][i] != null) {
-								queue.enqueue(matrix[pos][i].getEnding());
+								queue.add(matrix[pos][i].getEnding());
 							}
 						}
 					}
 				}
 			}
+			visits = visited;
 		}
+	}
+	
+	public Vertex<V>[] getVisits() {
+		return visits;
 	}
 
 	@Override
@@ -109,14 +123,18 @@ public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> imple
 			stack.push(s);
 			while (!stack.isEmpty()) {
 				boolean flag = false;
+				boolean flag2 = true;
 				aux = stack.pop();
 				for (int j = 0; j < visited.length && !flag; j++) {
 					if (visited[j] != null) {
 						if (visited[j].getValue().compareTo(aux.getValue()) == 0) {
 							flag = true;
+							flag2 = false;
 						}
-					} else if (!flag) {
+					} else if (!flag && !flag2) {
 						visited[j] = aux;
+						flag = true;
+						flag2 = false;
 					}
 				}
 				if (!flag) {
