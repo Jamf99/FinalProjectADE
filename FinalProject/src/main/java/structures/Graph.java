@@ -122,7 +122,7 @@ public class Graph<V> {
 		return new pair<Double, List<V>>(table.get(end).left, path);
 	}
 
-	public List<V> BFS(InterfcaeGraph<V> g, V start) {
+	public List<V> BFS(InterfaceGraph<V> g, V start) {
 		return graphTraversal(g, start, new LinkedList<V>());
 
 	}
