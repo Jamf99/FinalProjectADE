@@ -1,19 +1,34 @@
 package structures;
 
-public interface InterfaceGraph<V extends Comparable<V>, E extends Comparable<E>> {
+import java.util.List;
+import java.util.Set;
 
-	public void addEdge(Vertex<V> v1, Vertex<V> v2, E value);
+public interface InterfaceGraph<V> {
 
-	public void addVertex(Vertex<V> v1);
+	public boolean isDirected();
 
-	public void removeEdge(Edge<Vertex<V>,E> e);
+	public void addVertex(V v);
 
-	public void removeVertex(Vertex<V> v);
-	
-	public void BFS(Vertex<V> s);
-	
-	public void DFS(Vertex<V> s);
-	
-	public int[] dijkstra(Vertex<V> origin);
-	
+	public void addEdge(V v1, V v2);
+
+	public void addEdge(V v1, V v2, double w);
+
+	public double getWeight(V v1, V v2) throws Exception;
+
+	public boolean edgeExist(V v1, V v2);
+
+	public List<V> getAdjacentVertices(V v);
+
+	public Set<V> getVertices();
+
+	public List<Edge<V>> getOutgoingEdges(V v);
+
+	public void deleteVertex(V v);
+
+	public void deleteEdge(V v1, V v2);
+
+	public Set<Edge<V>> getEdges();
+
+	public double[][] generateWeightMatrix();
+
 }

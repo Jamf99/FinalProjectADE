@@ -1,156 +1,251 @@
 package structures;
+
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Stack;
-public class GraphList<V extends Comparable<V>, E extends Comparable<E>> implements InterfaceGraph<V, E>{
-	
-	private HashMap<Vertex<V>, LinkedHashSet<Edge<Vertex<V>,E>>> graph;
-	private LinkedHashSet<Edge<Vertex<V>,E>> edges;
-	private Vertex<V>[] visits;
-	
-	public GraphList() {
-		graph = new HashMap<Vertex<V>, LinkedHashSet<Edge<Vertex<V>,E>>>();
-		edges = new LinkedHashSet<Edge<Vertex<V>, E>>();
-	}
-	
-	@Override
-	public void addEdge(Vertex<V> v1, Vertex<V> v2, E edgeValue) {
-		Edge<Vertex<V>,E> edge = new Edge<Vertex<V>, E>(v2, edgeValue);
-		if(graph.containsKey(v1)){
-            graph.get(v1).add(edge);
-        }else{
-            edges = new LinkedHashSet<Edge<Vertex<V>, E>>();
-            edges.add(edge);
-            graph.put(v1, edges);
-        }
-        if(graph.containsKey(v2)){
-            graph.get(v2).add(edge);
-        }else{
-            edges = new LinkedHashSet<Edge<Vertex<V>, E>>();
-            edges.add(edge);
-            graph.put(v2, edges);
-        }
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class GraphList<V> implements InterfaceGraph<V> {
+
+	private Map<V, Map<V, Number>> container;
+	private Set<Edge<V>> edges;
+	private boolean directed;
+
+	public GraphList(boolean directed) {
+		this.directed = directed;
+		container = new HashMap<V, Map<V, Number>>();
+		edges = new TreeSet<Edge<V>>();
 	}
 
-	@Override
-	public void addVertex(Vertex<V> v1) {
-		if(!graph.containsKey(v1)) {
-			graph.put(v1, edges);
+	public GraphList(boolean directed, V[] objects) {
+		this.directed = directed;
+		edges = new TreeSet<Edge<V>>();
+		container = new HashMap<V, Map<V, Number>>();
+		for (int i = 0; i < objects.length; i++) {
+			addVertex(objects[i]);
 		}
 	}
 
-	public void removeEdge(Edge<Vertex<V>,E> e) {
-		
-	}
-
-	public void removeVertex(Vertex<V> v) {
-		if(graph.containsKey(v)) {
-			graph.remove(v);
+	public GraphList(boolean directed, Set<V> objects) {
+		this.directed = directed;
+		edges = new TreeSet<Edge<V>>();
+		container = new HashMap<V, Map<V, Number>>();
+		for (V aux : objects) {
+			addVertex(aux);
 		}
 	}
-	
-	
 
 	@Override
-	public void BFS(Vertex<V> s) {
-		visits = new Vertex[graph.size()];
-		Queue<Vertex<V>> queue = new LinkedList<Vertex<V>>();
-		Vertex<V>[] visited = new Vertex[graph.size()];
-		Vertex<V> aux = null;
-		if(graph.containsKey(s)) {
-			queue.add(s);
-			while(!queue.isEmpty()) {
-				boolean flag = false;
-				boolean flag2 = true;
-				aux = queue.remove();
-				for(int j = 0; j < visited.length && !flag; j++) {
-					if(visited[j] != null) {
-						if(visited[j].getValue().compareTo(aux.getValue()) == 0) {
-							flag = true;
-							flag2 = false;
-						}
-					}else if(!flag) {
-						visited[j] = aux;
-						flag2 = false;
+	public boolean isDirected() {
+
+		return directed;
+	}
+
+	@Override
+	public void addVertex(V v) {
+
+		container.put(v, new HashMap<V, Number>());
+
+	}
+
+	@Override
+	public void addEdge(V v1, V v2) {
+
+		addEdge(v1, v2, 1);
+
+	}
+
+	@Override
+	public void addEdge(V v1, V v2, double w) {
+		if (directed) {
+			Edge<V> edge = new Edge<V>(v1, v2, w);
+			edges.add(edge);
+			boolean containsV1 = container.containsKey(v1);
+			boolean containsV2 = container.containsKey(v2);
+			if (!containsV1 || !containsV2) {
+				if (!containsV1 && !containsV2) {
+					addVertex(v1);
+					addVertex(v2);
+					container.get(v1).put(v2, w);
+				} else {
+					if (!containsV1) {
+						addVertex(v1);
+						container.get(v1).put(v2, w);
+					} else {
+						addVertex(v2);
+						container.get(v1).put(v2, w);
 					}
 				}
-				if(!flag && !flag2) {
-					LinkedHashSet<Edge<Vertex<V>,E>> aux2 = graph.get(aux);
-					for(Edge<Vertex<V>, E> edges : aux2) {
-						queue.remove(edges.getEnding());
+			} else {
+				container.get(v1).put(v2, w);
+			}
+		} else {
+			Edge<V> edge1 = new Edge<V>(v1, v2, w);
+			Edge<V> edge2 = new Edge<V>(v2, v1, w);
+			edges.add(edge1);
+			edges.add(edge2);
+			boolean containsV1 = container.containsKey(v1);
+			boolean containsV2 = container.containsKey(v2);
+			if (!containsV1 || !containsV2) {
+				if (!containsV1 && !containsV2) {
+					addVertex(v1);
+					addVertex(v2);
+					container.get(v1).put(v2, w);
+					container.get(v2).put(v1, w);
+				} else {
+					if (!containsV1) {
+						addVertex(v1);
+						container.get(v1).put(v2, w);
+						container.get(v2).put(v1, w);
+					} else {
+						addVertex(v2);
+						container.get(v1).put(v2, w);
+						container.get(v2).put(v1, w);
 					}
 				}
+			} else {
+				container.get(v1).put(v2, w);
+				container.get(v2).put(v1, w);
 			}
 		}
-		visits = visited;
+
 	}
-	
+
 	@Override
-	public void DFS(Vertex<V> s) {
-		visits = new Vertex[graph.size()];
-		Stack<Vertex<V>> stack = new Stack<Vertex<V>>();
-		Vertex<V>[] visited = new Vertex[graph.size()];
-		Vertex<V> aux = null;
-		if(graph.containsKey(s)) {
-			stack.push(s);
-			while(!stack.isEmpty()) {
-				boolean flag = false;
-				boolean flag2 = true;
-				aux = stack.pop();
-				for(int j = 0; j < visited.length && !flag; j++) {
-					if(visited[j] != null) {
-						if(visited[j].getValue().compareTo(aux.getValue()) == 0) {
-							flag = true;
-							flag2 = false;
-						}
-					}else if(!flag && !flag2) {
-						visited[j] = aux;
-						flag2 = false;
-					}
-				}
-				if(!flag) {
-					LinkedHashSet<Edge<Vertex<V>,E>> aux2 = graph.get(aux);
-					for(Edge<Vertex<V>, E> edges : aux2) {
-						stack.push(edges.getEnding());
-					}
-				}
+	public double getWeight(V v1, V v2) throws Exception {
+
+		if (container.containsKey(v1) && container.containsKey(v2)) {
+			try {
+				return container.get(v1).get(v2).doubleValue();
+
+			} catch (Exception e) {
+				// TODO: handle exception
+				return Double.POSITIVE_INFINITY;
+			}
+		} else {
+			throw new Exception("At least one of the specified vertices does not belong to the graph");
+		}
+	}
+
+	@Override
+	public boolean edgeExist(V v1, V v2) {
+
+		if (!container.containsKey(v1) || !container.containsKey(v2)) {
+			return false;
+		} else {
+			return container.get(v1).containsKey(v2);
+		}
+	}
+
+	@Override
+	public List<V> getAdjacentVertices(V v) {
+
+		ArrayList<V> list = new ArrayList<V>();
+		if (!container.containsKey(v)) {
+			return list;
+		} else {
+			Set<V> set = container.get(v).keySet();
+			for (V adjacent : set) {
+				list.add(adjacent);
+			}
+			return list;
+		}
+	}
+
+	@Override
+	public Set<V> getVertices() {
+
+		return container.keySet();
+	}
+
+	@Override
+	public void deleteVertex(V v) {
+
+		container.remove(v);
+		for (Entry<V, Map<V, Number>> entry : container.entrySet()) {
+			Map<V, Number> aux = entry.getValue();
+			aux.remove(v);
+		}
+
+	}
+
+	@Override
+	public void deleteEdge(V v1, V v2) {
+
+		if (container.containsKey(v1) && container.containsKey(v2)) {
+
+			if (directed) {
+				container.get(v1).remove(v2);
+				Edge<V> e = new Edge<V>(v1, v2, 1);
+				edges.remove(e);
+			} else {
+				container.get(v1).remove(v2);
+				container.get(v2).remove(v1);
+				Edge<V> e = new Edge<V>(v1, v2, 1);
+				Edge<V> e1 = new Edge<V>(v2, v1, 1);
+				edges.remove(e);
+				edges.remove(e1);
 			}
 		}
 	}
-	
+
 	@Override
-	public int[] dijkstra(Vertex<V> origin) {
-		PriorityQueue<Vertex<V>> queue = new PriorityQueue<Vertex<V>>();
-		int[] distances = new int[graph.size()+1];
-		Hashtable<Integer, Vertex<V>> pairs = new Hashtable<Integer, Vertex<V>>();
-		
-		Vertex<V>[] visited = new Vertex[graph.size()];
-		for(int i = 0; i < distances.length; i++) {
-			distances[i] = Integer.MAX_VALUE; 
-		}
-		Vertex<V> aux = null;
-		queue.add(origin);
-		while(!queue.isEmpty()) {
-			aux = queue.poll();
-//			int weight = aux.ge
-		}
-		return distances;
-	}
+	public Set<Edge<V>> getEdges() {
 
-	public HashMap<Vertex<V>, LinkedHashSet<Edge<Vertex<V>, E>>> getGraph() {
-		return graph;
-	}
-
-	public LinkedHashSet<Edge<Vertex<V>, E>> getEdges() {
 		return edges;
 	}
 
-	public Vertex<V>[] getVisits() {
-		return visits;
+	@Override
+	public List<Edge<V>> getOutgoingEdges(V v) {
+		// TODO Auto-generated method stub
+		if (container.containsKey(v)) {
+			ArrayList<Edge<V>> list = new ArrayList<Edge<V>>();
+			for (V aux : this.getAdjacentVertices(v)) {
+				try {
+					list.add(new Edge<V>(v, aux, this.getWeight(v, aux)));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return list;
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public double[][] generateWeightMatrix() {
+		Set<V> vertices = getVertices();
+		double[][] m = new double[vertices.size()][vertices.size()];
+		HashMap<V, Integer> indices = new HashMap<V, Integer>();
+		int index = 0;
+		for (V aux : vertices) {
+			indices.put(aux, index);
+			index++;
+		}
+		for (V aux : vertices) {
+			int index2 = indices.get(aux);
+			for (Edge<V> e : getOutgoingEdges(aux)) {
+				m[index2][indices.get(e.getEnding())] = e.getValue();
+			}
+		}
+		for (int i = 0; i < m.length; i++) {
+			for (int j = 0; j < m.length; j++) {
+				if (m[i][j] == 0) {
+					m[i][j] = Double.POSITIVE_INFINITY;
+
+				}
+			}
+		}
+		for (int i = 0; i < m.length; i++) {
+			m[i][i] = 0;
+		}
+		return m;
+
 	}
 
 }
