@@ -9,7 +9,7 @@ public interface InterfaceGraph<V> {
 	 * 
 	 * @param v vertice
 	 */
-	public void addVertex(V v);
+	public V addVertex(V v);
 
 	/**
 	 * Metodo que agrega una arista
