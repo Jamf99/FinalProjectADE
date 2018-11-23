@@ -5,6 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Stack;
 public class GraphList<V extends Comparable<V>, E extends Comparable<E>> implements InterfaceGraph<V, E>{
 	
 	private HashMap<Vertex<V>, LinkedHashSet<Edge<Vertex<V>,E>>> graph;

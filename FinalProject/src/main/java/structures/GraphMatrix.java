@@ -2,6 +2,7 @@ package structures;
 
 import java.util.Hashtable;
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> implements InterfaceGraph<V, E> {
 
