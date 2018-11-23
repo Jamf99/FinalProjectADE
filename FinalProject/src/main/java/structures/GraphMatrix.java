@@ -62,7 +62,7 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 	}
 
 	@Override
-	public void addVertex(V v) {
+	public V addVertex(V v) {
 
 		if (!vertices.containsKey(v)) {
 
@@ -81,7 +81,7 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 			}
 			matrix = aux;
 		}
-
+		return v;
 	}
 
 	public void setMatrix(Number[][] matrix) {
