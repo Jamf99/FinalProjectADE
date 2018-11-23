@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
@@ -7,124 +13,59 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="1238.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="1238.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
    <children>
-      <Circle fill="DODGERBLUE" layoutX="242.0" layoutY="271.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="348.0" layoutY="183.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Line endX="89.0" endY="-72.0" layoutX="242.0" layoutY="271.0" startX="18.0" startY="-16.0" />
-      <Circle fill="DODGERBLUE" layoutX="673.0" layoutY="135.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="516.0" layoutY="351.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="912.0" layoutY="293.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="504.0" layoutY="211.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="1020.0" layoutY="129.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="156.0" layoutY="117.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="148.0" layoutY="415.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="322.0" layoutY="397.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="721.0" layoutY="305.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="717.0" layoutY="449.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="1112.0" layoutY="250.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="994.0" layoutY="435.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="834.0" layoutY="93.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="454.0" layoutY="77.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-      <Line endX="88.33331298828125" endY="-65.66667175292969" layoutX="919.0" layoutY="214.0" startX="8.0" startY="60.0" />
-      <Line endX="376.5" endY="-115.5" layoutX="717.0" layoutY="381.0" startX="19.66668701171875" startY="54.666656494140625" />
-      <Line endX="106.3333740234375" endY="-83.0" layoutX="999.0" layoutY="357.0" startX="11.66668701171875" startY="59.333343505859375" />
-      <Line endX="105.66668701171875" endY="-76.33332824707031" layoutX="929.0" layoutY="224.0" startX="169.0" startY="6.3333282470703125" />
-      <Line endX="-24.666671752929688" endY="-30.0" layoutX="252.0" layoutY="281.0" startX="-83.33332824707031" startY="-144.6666717529297" />
-      <Line endX="128.66665649414062" endY="-224.0" layoutX="318.0" layoutY="325.0" startX="12.0" startY="48.0" />
-      <Line endX="182.66665649414062" endY="-188.66665649414062" layoutX="252.0" layoutY="281.0" startX="112.66665649414062" startY="-116.0" />
-      <Line endX="216.66665649414062" endY="-184.0" layoutX="252.0" layoutY="281.0" startX="244.66665649414062" startY="-94.0" />
-      <Line endX="56.0" endY="96.66665649414062" layoutX="252.0" layoutY="281.0" startX="4.0" startY="9.333343505859375" />
-      <Line endX="-90.33332824707031" endY="113.66665649414062" layoutX="251.0" layoutY="282.0" startX="-22.0" startY="9.333343505859375" />
-      <Line endX="159.0" endY="29.0" layoutX="929.0" layoutY="224.0" startX="7.0" startY="64.5" />
-      <Line endX="224.5" endY="-217.0" layoutX="458.0" layoutY="373.0" startX="259.0" startY="-92.0" />
-      <Line endX="391.5" endY="-142.5" layoutX="262.0" layoutY="291.0" startX="266.0" startY="-85.0" />
-      <Line endX="220.5" endY="-187.0" layoutX="288.0" layoutY="422.0" startX="228.0" startY="-95.0" />
-      <Line endX="462.0" endY="15.5" layoutX="231.0" layoutY="437.0" startX="112.0" startY="-31.0" />
+      <Circle fx:id="menga" fill="DODGERBLUE" layoutX="242.0" layoutY="271.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="torreCali" fill="DODGERBLUE" layoutX="348.0" layoutY="183.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Line fx:id="menga_torreCali" endX="89.0" endY="-72.0" layoutX="242.0" layoutY="271.0" startX="18.0" startY="-16.0" />
+      <Circle fx:id="melendez" fill="DODGERBLUE" layoutX="673.0" layoutY="135.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="salomia" fill="DODGERBLUE" layoutX="516.0" layoutY="351.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="buitrera" fill="DODGERBLUE" layoutX="912.0" layoutY="293.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="sucre" fill="DODGERBLUE" layoutX="504.0" layoutY="211.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="refugio" fill="DODGERBLUE" layoutX="1020.0" layoutY="129.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="chiminangos" fill="DODGERBLUE" layoutX="156.0" layoutY="117.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="pasoDelComercio" fill="DODGERBLUE" layoutX="148.0" layoutY="415.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="floraIndustrial" fill="DODGERBLUE" layoutX="322.0" layoutY="397.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="unidadDeportiva" fill="DODGERBLUE" layoutX="721.0" layoutY="305.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="manzanaSaber" fill="DODGERBLUE" layoutX="717.0" layoutY="449.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="universidades" fill="DODGERBLUE" layoutX="1112.0" layoutY="250.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="univalle" fill="DODGERBLUE" layoutX="994.0" layoutY="435.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="pampalinda" fill="DODGERBLUE" layoutX="834.0" layoutY="93.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="sanBosco" fill="DODGERBLUE" layoutX="454.0" layoutY="77.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+      <Line fx:id="buitrera_refugio" endX="88.33331298828125" endY="-65.66667175292969" layoutX="919.0" layoutY="214.0" startX="8.0" startY="60.0" />
+      <Line fx:id="manzanaSaber_universidades" endX="376.5" endY="-115.5" layoutX="717.0" layoutY="381.0" startX="19.66668701171875" startY="54.666656494140625" />
+      <Line fx:id="univalle_universidades" endX="106.3333740234375" endY="-83.0" layoutX="999.0" layoutY="357.0" startX="11.66668701171875" startY="59.333343505859375" />
+      <Line fx:id="refugio_universidades" endX="105.66668701171875" endY="-76.33332824707031" layoutX="929.0" layoutY="224.0" startX="169.0" startY="6.3333282470703125" />
+      <Line fx:id="chiminangos_menga" endX="-24.666671752929688" endY="-30.0" layoutX="252.0" layoutY="281.0" startX="-83.33332824707031" startY="-144.6666717529297" />
+      <Line fx:id="floraIndustrial_sanBosco" endX="128.66665649414062" endY="-224.0" layoutX="318.0" layoutY="325.0" startX="12.0" startY="48.0" />
+      <Line fx:id="torreCali_sanBosco" endX="182.66665649414062" endY="-188.66665649414062" layoutX="252.0" layoutY="281.0" startX="112.66665649414062" startY="-116.0" />
+      <Line fx:id="sanBosco_sucre" endX="216.66665649414062" endY="-184.0" layoutX="252.0" layoutY="281.0" startX="244.66665649414062" startY="-94.0" />
+      <Line fx:id="menga_floraIndustrial" endX="56.0" endY="96.66665649414062" layoutX="252.0" layoutY="281.0" startX="4.0" startY="9.333343505859375" />
+      <Line fx:id="pasoComercio_menga" endX="-90.33332824707031" endY="113.66665649414062" layoutX="251.0" layoutY="282.0" startX="-22.0" startY="9.333343505859375" />
+      <Line fx:id="buitrera_universidades" endX="159.0" endY="29.0" layoutX="929.0" layoutY="224.0" startX="7.0" startY="64.5" />
+      <Line fx:id="melendez_unidadDeportiva" endX="224.5" endY="-217.0" layoutX="458.0" layoutY="373.0" startX="259.0" startY="-92.0" />
+      <Line fx:id="sucre_melendez" endX="391.5" endY="-142.5" layoutX="262.0" layoutY="291.0" startX="266.0" startY="-85.0" />
+      <Line fx:id="sucre_salomia" endX="220.5" endY="-187.0" layoutX="288.0" layoutY="422.0" startX="228.0" startY="-95.0" />
+      <Line fx:id="floraIndustrial_manzanaSaber" endX="462.0" endY="15.5" layoutX="231.0" layoutY="437.0" startX="112.0" startY="-31.0" />
       <Line endX="371.0" endY="-144.0" layoutX="439.0" layoutY="245.0" startX="258.0" startY="-115.33333587646484" />
-      <Line endX="554.0" endY="-186.66665649414062" layoutX="272.0" layoutY="301.0" startX="463.9595947265625" startY="-14.0" />
-      <Line endX="394.66668701171875" endY="-285.0" layoutX="298.0" layoutY="432.0" startX="594.0" startY="-150.33334350585938" />
-      <Line endX="401.33331298828125" endY="3.666656494140625" layoutX="298.0" layoutY="432.0" startX="233.33334350585938" startY="-63.666656494140625" />
+      <Line fx:id="unidadDeportiva_pampalinda" endX="554.0" endY="-186.66665649414062" layoutX="272.0" layoutY="301.0" startX="463.9595947265625" startY="-14.0" />
+      <Line fx:id="melendez_buitrera" endX="394.66668701171875" endY="-285.0" layoutX="298.0" layoutY="432.0" startX="594.0" startY="-150.33334350585938" />
+      <Line fx:id="salomia_manzanaSaber" endX="401.33331298828125" endY="3.666656494140625" layoutX="298.0" layoutY="432.0" startX="233.33334350585938" startY="-63.666656494140625" />
       <Line endX="234.0" endY="33.0" layoutX="483.0" layoutY="392.0" startX="238.0" startY="-63.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#127de051" height="106.0" layoutX="-8.0" layoutY="560.0" stroke="BLACK" strokeType="INSIDE" width="1260.0" />
-      <Text layoutX="149.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#127de051" height="116.0" layoutX="-1.0" layoutY="588.0" stroke="BLACK" strokeType="INSIDE" width="1260.0" />
+      <Text layoutX="112.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chiminangos">
          <font>
-            <Font size="17.0" />
+            <Font size="15.0" />
          </font>
       </Text>
-      <Text layoutX="144.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B">
+      <Text layoutX="91.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paso del Comercio">
          <font>
-            <Font size="17.0" />
+            <Font size="15.0" />
          </font>
       </Text>
-      <Text layoutX="237.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C">
+      <Text layoutX="271.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menga">
          <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="316.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="341.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="450.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="F">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="512.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="474.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="H">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="670.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="713.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="J">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="679.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="K">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="830.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="874.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="1016.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="1145.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="992.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S">
-         <font>
-            <Font size="17.0" />
+            <Font size="15.0" />
          </font>
       </Text>
       <Text fill="#3414c7" layoutX="173.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="49">
@@ -152,14 +93,14 @@
             <Font size="17.0" />
          </font>
       </Text>
-      <Line endX="-182.0" endY="-195.0" layoutX="328.0" layoutY="335.0" startX="-182.0" startY="56.0" />
+      <Line fx:id="chiminangos_pasoComercio" endX="-182.0" endY="-195.0" layoutX="328.0" layoutY="335.0" startX="-182.0" startY="56.0" />
       <Text fill="#3414c7" layoutX="123.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="80">
          <font>
             <Font size="17.0" />
          </font>
       </Text>
-      <Line endX="67.0" endY="-100.0" layoutX="929.0" layoutY="224.0" startX="-71.0" startY="-126.0" />
-      <Line endX="34.0" endY="209.0" layoutX="938.0" layoutY="234.0" startX="-198.0" startY="221.0" />
+      <Line fx:id="pampalinda_refugio" endX="67.0" endY="-100.0" layoutX="929.0" layoutY="224.0" startX="-71.0" startY="-126.0" />
+      <Line fx:id="manzanaSaber_univalle" endX="34.0" endY="209.0" layoutX="938.0" layoutY="234.0" startX="-198.0" startY="221.0" />
       <Text fill="#3414c7" layoutX="491.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="140">
          <font>
             <Font size="17.0" />
@@ -243,6 +184,138 @@
       <Text fill="#3414c7" layoutX="1066.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="38">
          <font>
             <Font size="17.0" />
+         </font>
+      </Text>
+      <Button layoutX="310.0" layoutY="644.0" mnemonicParsing="false" onAction="#foundTheShortestRoad" prefHeight="2.0" prefWidth="153.0" text="Found the shortest road" textAlignment="CENTER" textFill="#0b2c6e">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="629.0" layoutY="644.0" mnemonicParsing="false" onAction="#generateMST" prefHeight="25.0" prefWidth="96.0" text="Generate MST" textAlignment="CENTER" textFill="#0b2c6e">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <RadioButton fx:id="adyacentMatrix" layoutX="37.0" layoutY="611.0" mnemonicParsing="false" text="Adyacent Matrix">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="type" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="adyacentList" layoutX="37.0" layoutY="643.0" mnemonicParsing="false" text="Adyacent List" toggleGroup="$type">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </RadioButton>
+      <Button layoutX="773.0" layoutY="616.0" mnemonicParsing="false" onAction="#generateAdyacentMatrix" prefHeight="37.0" prefWidth="169.0" text="Generate adyacent matrix" textAlignment="CENTER" textFill="#0b2c6e">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="958.0" layoutY="615.0" mnemonicParsing="false" onAction="#generateDistanceMatrix" prefHeight="37.0" prefWidth="169.0" text="Generate distance matrix" textAlignment="CENTER" textFill="#0b2c6e">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="1145.0" layoutY="615.0" mnemonicParsing="false" onAction="#repaint" prefHeight="37.0" prefWidth="72.0" text="Repaint" textAlignment="CENTER" textFill="#9c0000">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ChoiceBox fx:id="origin" layoutX="202.0" layoutY="610.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="ending" layoutX="419.0" layoutY="610.0" prefWidth="150.0" />
+      <Text layoutX="380.0" layoutY="626.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to" />
+      <ChoiceBox fx:id="startMst" layoutX="600.0" layoutY="610.0" prefWidth="150.0" />
+      <Label layoutX="208.0" layoutY="508.0" text="Kilometers">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="kilometers" layoutX="356.0" layoutY="509.0" prefHeight="35.0" prefWidth="135.0" text="0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Text layoutX="276.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flora industrial">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="434.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salomia">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="276.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Torre de Cali">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="421.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="San Bosco">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="531.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sucre">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="640.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Melendez">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="655.0" layoutY="496.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manzana del saber">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="579.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidad deportiva">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="794.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pampalinda">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="1112.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Universidades">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="1040.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Refugio">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="1018.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Univalle">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="832.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Buitrera">
+         <font>
+            <Font size="15.0" />
          </font>
       </Text>
    </children>
