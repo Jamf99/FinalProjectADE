@@ -1,230 +1,335 @@
 package structures;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import java.util.Stack;
+import java.util.TreeSet;
 
-public class GraphMatrix<V extends Comparable<V>, E extends Comparable<E>> implements InterfaceGraph<V, E> {
+public class GraphMatrix<V> implements InterfaceGraph<V> {
 
-	private Edge<Vertex<V>, E>[][] matrix;
-	private Hashtable<Vertex<V>, Integer> numbers;
-	private Vertex<V>[] visits;
-	private boolean isDirected;
+	private HashMap<V, Integer> vertices;
+	private ArrayList<V> indices;
+	private Number[][] matrix;
+	private boolean directed;
+	private Set<Edge<V>> edges;
 
-	public GraphMatrix(boolean isDirected) {
-		this.isDirected = isDirected;
-		numbers = new Hashtable<Vertex<V>, Integer>();
-		matrix = new Edge[numbers.size()][numbers.size()];
+	public Number[][] getMatrix() {
+		return matrix;
 	}
 
-	private void expandMatrix() {
-		Edge<Vertex<V>, E>[][] aux = new Edge[numbers.size() + 1][numbers.size() + 1];
-		matrix = aux;
-		for (int i = 0; i < matrix.length; i++) {
-			for (int j = 0; j < matrix[0].length; j++) {
-				aux[i][j] = matrix[i][j];
-			}
-		}
-		matrix = aux;
+	public GraphMatrix(boolean directed) {
+		vertices = new HashMap<V, Integer>();
+		indices = new ArrayList<V>();
+		matrix = new Number[0][0];
+		edges = new TreeSet<Edge<V>>();
+		this.directed = directed;
 	}
 
-	private void comprimeMatrix() {
-		Edge<Vertex<V>, E>[][] aux = new Edge[numbers.size() - 1][numbers.size() - 1];
-		for (int i = 0; i < matrix.length; i++) {
-			for (int j = 0; j < matrix[0].length; j++) {
-				aux[i][j] = matrix[i][j];
-			}
+	public Number[][] giveAdjacencyMatrix() {
+		return matrix;
+	}
+
+	public GraphMatrix(boolean directed, V[] objects) {
+		vertices = new HashMap<V, Integer>();
+		indices = new ArrayList<V>();
+		matrix = new Number[0][0];
+		edges = new TreeSet<Edge<V>>();
+		this.directed = directed;
+		for (int i = 0; i < objects.length; i++) {
+			addVertex(objects[i]);
 		}
-		matrix = aux;
+	}
+
+	public GraphMatrix(boolean directed, Set<V> objects) {
+		vertices = new HashMap<V, Integer>();
+		indices = new ArrayList<V>();
+		matrix = new Number[0][0];
+		edges = new TreeSet<Edge<V>>();
+		this.directed = directed;
+		for (V aux : objects) {
+			addVertex(aux);
+		}
 	}
 
 	@Override
-	public void addEdge(Vertex<V> v1, Vertex<V> v2, E value) {
-		if (numbers.containsKey(v1) && numbers.containsKey(v2)) {
-			Edge<Vertex<V>, E> newEdge = new Edge<Vertex<V>, E>(v2, value);
-			if (isDirected) {
-				matrix[numbers.get(v1).intValue()][numbers.get(v2).intValue()] = newEdge;
+	public boolean isDirected() {
+
+		return directed;
+	}
+
+	@Override
+	public void addVertex(V v) {
+
+		if (!vertices.containsKey(v)) {
+
+			vertices.put(v, indices.size());
+			indices.add(v);
+			Number[][] aux = new Number[vertices.size()][vertices.size()];
+			for (int i = 0; i < aux.length; i++) {
+				for (int j = 0; j < aux.length; j++) {
+					if (i < matrix.length && j < matrix.length) {
+
+						aux[i][j] = matrix[i][j];
+					} else {
+						aux[i][j] = null;
+					}
+				}
+			}
+			matrix = aux;
+		}
+
+	}
+
+	public void setMatrix(Number[][] matrix) {
+		this.matrix = matrix;
+	}
+
+	@Override
+	public void addEdge(V v1, V v2) {
+
+		addEdge(v1, v2, 1);
+
+	}
+
+	@Override
+	public void addEdge(V v1, V v2, double w) {
+
+		boolean containsV1 = vertices.containsKey(v1);
+		boolean containsV2 = vertices.containsKey(v2);
+
+		if (directed) {
+			Edge<V> edge = new Edge<V>(v1, v2, w);
+			edges.add(edge);
+			if (containsV1 && containsV2) {
+				matrix[vertices.get(v1)][vertices.get(v2)] = w;
+			} else if (!containsV1 || !containsV2) {
+				if (!containsV1 && !containsV2) {
+					addVertex(v1);
+					addVertex(v2);
+					matrix[vertices.get(v1)][vertices.get(v2)] = w;
+				} else if (!containsV1) {
+					addVertex(v1);
+					matrix[vertices.get(v1)][vertices.get(v2)] = w;
+				} else {
+					addVertex(v2);
+					matrix[vertices.get(v1)][vertices.get(v2)] = w;
+
+				}
+			}
+
+		} else {
+			Edge<V> edge1 = new Edge<V>(v1, v2, w);
+			Edge<V> edge2 = new Edge<V>(v2, v1, w);
+
+			edges.add(edge1);
+			edges.add(edge2);
+			if (containsV1 && containsV2) {
+				int iv1 = vertices.get(v1);
+				int iv2 = vertices.get(v2);
+				matrix[iv1][iv2] = w;
+				matrix[iv2][iv1] = w;
+			} else if (!containsV1 || !containsV2) {
+				if (!containsV1 && !containsV2) {
+					addVertex(v1);
+					addVertex(v2);
+					int iv1 = vertices.get(v1);
+					int iv2 = vertices.get(v2);
+					matrix[iv1][iv2] = w;
+					matrix[iv2][iv1] = w;
+				} else if (!containsV1) {
+					addVertex(v1);
+					int iv1 = vertices.get(v1);
+					int iv2 = vertices.get(v2);
+					matrix[iv1][iv2] = w;
+					matrix[iv2][iv1] = w;
+				} else {
+					addVertex(v2);
+					int iv1 = vertices.get(v1);
+					int iv2 = vertices.get(v2);
+					matrix[iv1][iv2] = w;
+					matrix[iv2][iv1] = w;
+
+				}
+			}
+		}
+	}
+
+	@Override
+	public double getWeight(V v1, V v2) throws Exception {
+
+		if (vertices.containsKey(v1) && vertices.containsKey(v2)) {
+			try {
+
+				return matrix[vertices.get(v1)][vertices.get(v2)].doubleValue();
+			} catch (Exception e) {
+				// TODO: handle exception
+				return Double.POSITIVE_INFINITY;
+			}
+		} else {
+			throw new Exception("At least one of the specified vertices does not belong to the graph");
+		}
+
+	}
+
+	@Override
+	public boolean edgeExist(V v1, V v2) {
+
+		if (!vertices.containsKey(v1) || !vertices.containsKey(v2)) {
+			return false;
+		} else {
+			if (matrix[vertices.get(v1)][vertices.get(v2)] == null) {
+				return false;
 			} else {
-				matrix[numbers.get(v1).intValue()][numbers.get(v2).intValue()] = newEdge;
-				matrix[numbers.get(v2).intValue()][numbers.get(v1).intValue()] = newEdge;
+				return true;
 			}
+		}
+
+	}
+
+	@Override
+	public List<V> getAdjacentVertices(V v) {
+
+		ArrayList<V> list = new ArrayList<V>();
+		if (vertices.containsKey(v)) {
+			int index = vertices.get(v);
+			for (int i = 0; i < matrix.length; i++) {
+				if (matrix[index][i] != null) {
+					list.add(indices.get(i));
+				}
+			}
+		}
+
+		return list;
+
+	}
+
+	@Override
+	public Set<V> getVertices() {
+
+		return vertices.keySet();
+	}
+
+	@Override
+	public void deleteVertex(V v) {
+
+		if (vertices.containsKey(v)) {
+			int index = vertices.get(v);
+			for (int i = index + 1; i < indices.size(); i++) {
+
+				int value = vertices.get(indices.get(i));
+				value--;
+				vertices.replace(indices.get(i), value);
+			}
+			indices.remove(index);
+			vertices.remove(v);
+
+			Number[][] aux = new Number[matrix.length - 1][matrix.length - 1];
+			int iAux = 0;
+			int jAux = 0;
+			boolean finished = false;
+			for (int i = 0; i < matrix.length && !finished; i++) {
+				for (int j = 0; j < matrix.length && !finished; j++) {
+					if (i != index && j != index) {
+						aux[iAux][jAux] = matrix[i][j];
+						jAux++;
+						if (jAux == aux.length) {
+							jAux = 0;
+							iAux++;
+						}
+						if (iAux == aux.length) {
+							finished = true;
+						}
+					}
+				}
+			}
+			matrix = aux;
+
 		}
 	}
 
 	@Override
-	public void addVertex(Vertex<V> v) {
-		numbers.put(v, numbers.size() + 1);
-		expandMatrix();
+	public void deleteEdge(V v1, V v2) {
+
+		if (vertices.containsKey(v1) && vertices.containsKey(v2)) {
+			if (directed) {
+				matrix[vertices.get(v1)][vertices.get(v2)] = null;
+				Edge<V> e = new Edge<V>(v1, v2, 1);
+				edges.remove(e);
+
+			} else {
+				matrix[vertices.get(v1)][vertices.get(v2)] = null;
+				matrix[vertices.get(v2)][vertices.get(v1)] = null;
+				Edge<V> e = new Edge<V>(v1, v2, 1);
+				Edge<V> e1 = new Edge<V>(v2, v1, 1);
+				edges.remove(e);
+				edges.remove(e1);
+			}
+		}
 	}
 
-	@Override
-	public void removeEdge(Edge<Vertex<V>, E> e) {
+	public Number[][] getAdjacencyMatriz() {
+
+		return matrix;
+	}
+
+	public void printMatrix() {
 		for (int i = 0; i < matrix.length; i++) {
-
+			String line = "";
+			for (int j = 0; j < matrix.length; j++) {
+				line += matrix[i][j] + " ";
+			}
+			System.out.println(line);
 		}
 	}
 
 	@Override
-	public void removeVertex(Vertex<V> v) {
-		numbers.put(v, numbers.size() - 1);
-		comprimeMatrix();
-	}
+	public Set<Edge<V>> getEdges() {
 
-	
-	
-	@Override
-	public void BFS(Vertex<V> s) {
-		visits = new Vertex[numbers.size()];
-		
-		java.util.Queue<Vertex<V>> queue = new LinkedList<Vertex<V>>();
-		Vertex<V>[] visited = new Vertex[numbers.size()];
-		Vertex<V> aux = null;
-		if (numbers.containsKey(s)) {
-			queue.add(s);
-			while (!queue.isEmpty()) {
-				boolean flag = false;
-				boolean flag2 = true;
-				aux = queue.remove();
-				for (int j = 0; j < visited.length && !flag && flag2; j++) {
-					if (visited[j] != null) {
-						if (visited[j].getValue().compareTo(aux.getValue()) == 0) {
-							flag = true;
-							flag2 = false;
-						}
-					} else if (!flag) {
-						visited[j] = aux;
-						flag2 = false;
-					}
-				}
-				if (!flag2 && !flag) {
-					if (numbers.containsKey(aux)) {
-						int pos = numbers.get(aux).intValue();
-						for (int i = 0; i < matrix[0].length; i++) {
-							if (matrix[pos][i] != null) {
-								queue.add(matrix[pos][i].getEnding());
-							}
-						}
-					}
-				}
-			}
-			visits = visited;
-		}
-	}
-	
-	public Vertex<V>[] getVisits() {
-		return visits;
+		return edges;
 	}
 
 	@Override
-	public void DFS(Vertex<V> s) {
-		Stack<Vertex<V>> stack = new Stack<Vertex<V>>();
-		Vertex<V>[] visited = new Vertex[numbers.size()];
-		Vertex<V> aux = null;
-		if (numbers.containsKey(s)) {
-			stack.push(s);
-			while (!stack.isEmpty()) {
-				boolean flag = false;
-				boolean flag2 = true;
-				aux = stack.pop();
-				for (int j = 0; j < visited.length && !flag; j++) {
-					if (visited[j] != null) {
-						if (visited[j].getValue().compareTo(aux.getValue()) == 0) {
-							flag = true;
-							flag2 = false;
-						}
-					} else if (!flag && !flag2) {
-						visited[j] = aux;
-						flag = true;
-						flag2 = false;
-					}
-				}
-				if (!flag) {
-					if (numbers.containsKey(aux)) {
-						int pos = numbers.get(aux).intValue();
-						for (int i = 0; i < matrix[0].length; i++) {
-							if (matrix[pos][i] != null) {
-								stack.push(matrix[pos][i].getEnding());
-							}
-						}
-					}
+	public List<Edge<V>> getOutgoingEdges(V v) {
+		// TODO Auto-generated method stub
+		if (vertices.containsKey(v)) {
+			ArrayList<Edge<V>> list = new ArrayList<Edge<V>>();
+			for (V aux : this.getAdjacentVertices(v)) {
+				try {
+					list.add(new Edge<V>(v, aux, this.getWeight(v, aux)));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
+			return list;
+		} else {
+			return null;
 		}
 	}
 
 	@Override
-	public int[] dijkstra(Vertex<V> origin) {
-		int v = matrix.length;
-		boolean[] visited = new boolean[v];
-		int[] distance = new int[v];
-		distance[0] = 0;
-		for (int i = 1; i < v; i++) {
-			distance[i] = Integer.MAX_VALUE;
-		}
-		for (int i = 0; i < v; i++) {
-			int minVertex = findMinVertex(distance, visited);
-			for (int j = 0; j < v; j++) {
-				if ((int) matrix[minVertex][j].getValue() != 0 && !visited[j]
-						&& distance[minVertex] != Integer.MAX_VALUE) {
-					int newDist = distance[minVertex] + (int) matrix[minVertex][j].getValue();
-					if (newDist < distance[j]) {
-						distance[j] = newDist;
-					}
-				}
-			}
-		}
-		return distance;
-	}
-
-	private int findMinVertex(int[] distance, boolean visited[]) {
-		int minVertex = -1;
-		for (int i = 0; i < distance.length; i++) {
-			if (!visited[i] && (minVertex == -1 || distance[i] < distance[minVertex])) {
-				minVertex = i;
-			}
-		}
-		return minVertex;
-	}
-
-	public double[][] floydWarshallAlgorithm() {
-		double[][] w = generateWeightMatrix();
-		for (int k = 0; k < w.length; k++) {
-			for (int i = 0; i < w.length; i++) {
-				for (int j = 0; j < w.length; j++) {
-					if (w[i][j] > w[i][k] + w[k][j]) {
-						w[i][j] = w[i][k] + w[k][j];
-					}
-				}
-			}
-		}
-		return w;
-	}
-
-	private double[][] generateWeightMatrix() {
+	public double[][] generateWeightMatrix() {
+		// TODO Auto-generated method stub
 		double[][] m = new double[matrix.length][matrix.length];
 		for (int i = 0; i < m.length; i++) {
 			for (int j = 0; j < m.length; j++) {
 				if (matrix[i][j] != null) {
-					m[i][j] = (int) matrix[i][j].getValue();
+
+					m[i][j] = matrix[i][j].doubleValue();
 				} else {
 					m[i][j] = Double.POSITIVE_INFINITY;
 				}
 			}
 		}
+
 		for (int i = 0; i < m.length; i++) {
 			m[i][i] = 0;
 		}
 		return m;
 	}
 
-	public Edge<Vertex<V>, E>[][] getMatrix() {
-		return matrix;
-	}
-
-	public Hashtable<Vertex<V>, Integer> getNumbers() {
-		return numbers;
-	}
-
-	
-	
 }
