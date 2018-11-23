@@ -122,12 +122,12 @@ public class Graph<V> {
 		return new pair<Double, List<V>>(table.get(end).left, path);
 	}
 
-	public List<V> BFS(Graph<V> g, V start) {
+	public List<V> BFS(InterfcaeGraph<V> g, V start) {
 		return graphTraversal(g, start, new LinkedList<V>());
 
 	}
 
-	public List<V> DFS(Graph<V> g, V start) {
+	public List<V> DFS(InterfaceGraph<V> g, V start) {
 		return graphTraversal(g, start, new Stack<V>());
 
 	}
@@ -153,18 +153,6 @@ public class Graph<V> {
 
 	}
 
-	/**
-	 * Generic Graph traversal method, will execute BFS or DFS according to the
-	 * specified Collection.
-	 * 
-	 * @param g     The Graph to be traversed.
-	 * @param start The origin of the traversal (it is the starting point).
-	 * @param x     An implementation of Collection, it can be an implementation of
-	 *              Queue or an instance of Stack.
-	 * @return A List containing the objects inside g in order of traversal. Will
-	 *         depend on specified instance of x. Queue specification uses BFS,
-	 *         Stack uses DFS.
-	 */
 	private List<V> graphTraversal(InterfaceGraph<V> g, V start, Collection<V> x) {
 		List<V> list = new ArrayList<V>();
 		Hashtable<V, Boolean> marked = new Hashtable<V, Boolean>();
