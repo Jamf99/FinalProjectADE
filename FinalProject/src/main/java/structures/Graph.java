@@ -71,7 +71,7 @@ public class Graph<V> {
 		return g;
 	}
 
-	public pair<Double, List<V>> DijkstraAlgorithm(InterfaceGraph<V> graph, V start, V end) throws Exception {
+	public pair<Double, List<V>> Dijkstra(InterfaceGraph<V> graph, V start, V end) throws Exception {
 		if (!graph.getVertices().contains(start) || !graph.getVertices().contains(end)) {
 			throw new Exception("Some of the specified elements are not part of the Graph");
 		}
@@ -132,7 +132,7 @@ public class Graph<V> {
 
 	}
 
-	public InterfaceGraph<V> kruskalAlgorithm(InterfaceGraph<V> graph) {
+	public InterfaceGraph<V> kruskal(InterfaceGraph<V> graph) {
 		UnionFind<V> uf = new UnionFind<V>();
 		Set<V> vertices = graph.getVertices();
 		for (V aux : vertices) {
@@ -195,7 +195,7 @@ public class Graph<V> {
 		return list;
 	}
 
-	public double[][] FloydWarshallAlgorithm(InterfaceGraph<V> g) {
+	public double[][] FloydWarshall(InterfaceGraph<V> g) {
 		double[][] w = g.generateWeightMatrix();
 		for (int k = 0; k < w.length; k++) {
 			for (int i = 0; i < w.length; i++) {
