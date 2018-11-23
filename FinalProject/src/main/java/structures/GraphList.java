@@ -45,9 +45,9 @@ public class GraphList<V> implements InterfaceGraph<V> {
 	}
 
 	@Override
-	public void addVertex(V v) {
-
+	public V addVertex(V v) {
 		container.put(v, new HashMap<V, Number>());
+		return v;
 
 	}
 
