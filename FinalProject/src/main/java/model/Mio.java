@@ -74,6 +74,7 @@ public class Mio {
 		graph.addEdge(v11, v16, 90);
 		graph.addEdge(v11, v15, 57);
 		graph.addEdge(v15, v16, 38);
+		graph.addEdge(v7, v11, 140);
 	}
 	
 }

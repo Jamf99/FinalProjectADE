@@ -2,11 +2,8 @@ package structures;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.Stack;
 import java.util.TreeSet;
 
 public class GraphMatrix<V> implements InterfaceGraph<V> {
@@ -185,6 +182,20 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 				return false;
 			} else {
 				return true;
+			}
+		}
+
+	}
+	
+	public Edge<V> foundEdge(V v1, V v2) {
+		Edge<V> edge = null;
+		if (!vertices.containsKey(v1) || !vertices.containsKey(v2)) {
+			return null;
+		} else {
+			if (matrix[vertices.get(v1)][vertices.get(v2)] == null) {
+				return null;
+			} else {
+				return null;
 			}
 		}
 
