@@ -18,6 +18,7 @@ public class GraphList<V> implements InterfaceGraph<V> {
 		this.directed = directed;
 		container = new HashMap<V, Map<V, Number>>();
 		edges = new TreeSet<Edge<V>>();
+	
 	}
 
 	public GraphList(boolean directed, V[] objects) {
