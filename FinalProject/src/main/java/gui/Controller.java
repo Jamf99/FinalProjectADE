@@ -1,14 +1,26 @@
 package gui;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import model.Mio;
 
-public class Controller {
+public class Controller implements Initializable {
+	
+	private Mio model;
 
     @FXML
     private Circle menga;
@@ -126,6 +138,9 @@ public class Controller {
 
     @FXML
     private RadioButton adyacentMatrix;
+    
+    @FXML
+    private Button butGenerateAdyacentMatrix;
 
     @FXML
     private ToggleGroup type;
@@ -134,20 +149,34 @@ public class Controller {
     private RadioButton adyacentList;
 
     @FXML
-    private ChoiceBox<?> origin;
+    private ChoiceBox<String> origin;
 
     @FXML
-    private ChoiceBox<?> ending;
+    private ChoiceBox<String> ending;
 
     @FXML
-    private ChoiceBox<?> startMst;
+    private ChoiceBox<String> startMst;
 
     @FXML
     private Label kilometers;
 
     @FXML
     void foundTheShortestRoad(ActionEvent event) {
-
+    	String v1 = origin.getSelectionModel().getSelectedItem();
+    	String v2 = ending.getSelectionModel().getSelectedItem();
+    	if(v1.equals(v2)) {
+    		Alert alert = new Alert(AlertType.ERROR);
+    		alert.setTitle("Error");
+    		alert.setHeaderText("There is not distance between "+v1+" and "+v2);
+    		alert.showAndWait();
+    		kilometers.setText(0+"");
+    	}else {
+    		try {
+    			model.getOperator().Dijkstra(model.getGraph(), v1, v2);
+    		}catch(Exception e) {
+    			
+    		}
+    	}
     }
 
     @FXML
@@ -169,5 +198,29 @@ public class Controller {
     void repaint(ActionEvent event) {
 
     }
+    
+    @FXML
+    void selectAdyacentList(ActionEvent event) {
+    	butGenerateAdyacentMatrix.setDisable(true);
+    }
+
+    @FXML
+    void selectAdyacentMatrix(ActionEvent event) {
+    	butGenerateAdyacentMatrix.setDisable(false );
+    }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		model = new Mio(adyacentMatrix.isSelected());
+		ObservableList<String> states = FXCollections.observableArrayList("Chiminangos", "Paso del Comercio", "Menga", "Torre de Cali",
+				"San Bosco", "Sucre", "Flora industrial", "Salomia", "Melendez", "Unidad deportiva", "Manzana del saber", "Buitrera",
+				"Pampalinda", "Refugio", "Univalle", "Universidades");
+		origin.setItems(states);
+		origin.getSelectionModel().select(0);
+		ending.setItems(states);
+		ending.getSelectionModel().select(1);
+		startMst.setItems(states);
+		startMst.getSelectionModel().select(0);
+	}
 
 }
