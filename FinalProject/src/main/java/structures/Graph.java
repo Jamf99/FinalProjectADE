@@ -16,25 +16,25 @@ public class Graph<V> {
 
 	public static class pair<L, R> {
 
-		private L left;
-		private R right;
+		private L dist;
+		private R list;
 
-		public pair(L left, R right) {
-			this.left = left;
-			this.right = right;
+		public pair(L dist, R list) {
+			this.dist = dist;
+			this.list = list;
 		}
 
-		public L getLeft() {
-			return left;
+		public L getDist() {
+			return dist;
 		}
 
-		public R getRight() {
-			return right;
+		public R getList() {
+			return list;
 		}
 
 		@Override
 		public int hashCode() {
-			return left.hashCode() ^ right.hashCode();
+			return dist.hashCode() ^ list.hashCode();
 		}
 
 		@Override
@@ -42,7 +42,7 @@ public class Graph<V> {
 			if (!(o instanceof pair))
 				return false;
 			pair<L, R> pairo = (pair<L, R>) o;
-			return this.left.equals(pairo.getLeft()) && this.right.equals(pairo.getRight());
+			return this.dist.equals(pairo.getDist()) && this.list.equals(pairo.getList());
 		}
 
 	}
@@ -86,9 +86,9 @@ public class Graph<V> {
 			V minV = null;
 			double minD = Double.POSITIVE_INFINITY;
 			for (V aux : Q) {
-				if (table.get(aux).left <= minD) {
+				if (table.get(aux).dist <= minD) {
 					minV = aux;
-					minD = table.get(aux).left;
+					minD = table.get(aux).dist;
 				}
 			}
 			V u = minV;
@@ -96,30 +96,30 @@ public class Graph<V> {
 			Q.remove(minV);
 
 			for (V v : graph.getAdjacentVertices(u)) {
-				double alt = table.get(u).left + graph.getWeight(u, v);
-				if (alt < table.get(v).left) {
-					table.get(v).left = alt;
-					table.get(v).right = u;
+				double alt = table.get(u).dist + graph.getWeight(u, v);
+				if (alt < table.get(v).dist) {
+					table.get(v).dist = alt;
+					table.get(v).list = u;
 				}
 			}
 		}
 
 		for (V aux : table.keySet()) {
-			System.out.println(aux + " : " + table.get(aux).left + " : " + table.get(aux).right);
+			System.out.println(aux + " : " + table.get(aux).dist + " : " + table.get(aux).list);
 		}
 
 		ArrayList<V> path = new ArrayList<V>();
 		V current1 = end;
 		while (current1 != null) {
 			path.add(0, current1);
-			current1 = table.get(current1).right;
+			current1 = table.get(current1).list;
 		}
 
-		if (table.get(end).left == Double.POSITIVE_INFINITY) {
+		if (table.get(end).dist == Double.POSITIVE_INFINITY) {
 			path = new ArrayList<V>();
 		}
 
-		return new pair<Double, List<V>>(table.get(end).left, path);
+		return new pair<Double, List<V>>(table.get(end).dist, path);
 	}
 
 	public List<V> BFS(InterfaceGraph<V> g, V start) {
@@ -194,6 +194,7 @@ public class Graph<V> {
 		}
 		return list;
 	}
+	
 
 	public double[][] FloydWarshall(InterfaceGraph<V> g) {
 		double[][] w = g.generateWeightMatrix();
