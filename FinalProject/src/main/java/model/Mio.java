@@ -12,7 +12,8 @@ public class Mio {
 	private boolean isMatrix;
 	
 	public Mio(boolean isMatrix) {
-		if(isMatrix) {
+		this.isMatrix = isMatrix;
+		if(this.isMatrix) {
 			graph = new GraphMatrix<>(false);
 		}else {
 			graph = new GraphList<>(false);
@@ -56,7 +57,23 @@ public class Mio {
 		graph.addEdge(v3, v4, 15);
 		graph.addEdge(v3, v7, 20);
 		graph.addEdge(v4, v5, 17);
-		graph.addEdge(v7, v4, 102);
+		graph.addEdge(v7, v5, 102);
+		graph.addEdge(v5, v6, 15);
+		graph.addEdge(v6, v8, 19);
+		graph.addEdge(v6, v9, 30);
+		graph.addEdge(v8, v11, 47);
+		graph.addEdge(v10, v11, 25);
+		graph.addEdge(v9, v13, 20);
+		graph.addEdge(v9, v10, 29);
+		graph.addEdge(v9, v12, 62);
+		graph.addEdge(v13, v10, 47);
+		graph.addEdge(v13, v14, 30);
+		graph.addEdge(v14, v12, 40);
+		graph.addEdge(v14, v16, 14);
+		graph.addEdge(v12, v16, 37);
+		graph.addEdge(v11, v16, 90);
+		graph.addEdge(v11, v15, 57);
+		graph.addEdge(v15, v16, 38);
 	}
 	
 }

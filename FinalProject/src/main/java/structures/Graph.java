@@ -41,7 +41,7 @@ public class Graph<V> {
 		public boolean equals(Object o) {
 			if (!(o instanceof pair))
 				return false;
-			pair pairo = (pair) o;
+			pair<L, R> pairo = (pair<L, R>) o;
 			return this.left.equals(pairo.getLeft()) && this.right.equals(pairo.getRight());
 		}
 
