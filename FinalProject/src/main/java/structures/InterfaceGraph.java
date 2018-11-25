@@ -13,7 +13,8 @@ public interface InterfaceGraph<V> {
 	public V addVertex(V v);
 
 	/**
-	 * Metodo que agrega una arista al grafo, siempre y cuando esa arista no forme parte ya del grafo.
+	 * Metodo que agrega una arista al grafo, siempre y cuando esa arista no forme
+	 * parte ya del grafo.
 	 * 
 	 * @param v1 vertice incial
 	 * @param v2 vertice final
@@ -21,7 +22,8 @@ public interface InterfaceGraph<V> {
 	public void addEdge(V v1, V v2);
 
 	/**
-	 * Metodo que agrega una arista al grafo con el peso de esta, siempre y cuando esta no forme parte ya del grafo.
+	 * Metodo que agrega una arista al grafo con el peso de esta, siempre y cuando
+	 * esta no forme parte ya del grafo.
 	 * 
 	 * @param v1 vertice inicial
 	 * @param v2 vertice final
@@ -77,6 +79,16 @@ public interface InterfaceGraph<V> {
 	 */
 	public void deleteEdge(V v1, V v2);
 
+	/**
+	 * Metodo que me determina el peso de la arista mediante los vertice de incio y
+	 * de salida, en caso tal de que no se encuentre una arista el arrojara
+	 * excepcion indicando de que no existe el vertice
+	 * 
+	 * @param v1 vertice A de inicio
+	 * @param v2 vertice B de salida
+	 * @return retorna el peso de la arista
+	 * @throws Exception
+	 */
 	public double getWeight(V v1, V v2) throws Exception;
 
 	/**
@@ -87,7 +99,7 @@ public interface InterfaceGraph<V> {
 	public boolean isDirected();
 
 	/**
-	 * Metodo me determina si existe un edge entre 2 vertex
+	 * Metodo me determina si existe una arista entre 2 vertices, el vertice en inicio y el vertice final
 	 * 
 	 * @param v1 vertice de inicio
 	 * @param v2 vertice final
@@ -99,7 +111,7 @@ public interface InterfaceGraph<V> {
 	/**
 	 * Matriz de pesos de las aristas.
 	 * 
-	 * @return retorna los pesos del grafo
+	 * @return retorna una matriz los pesos del grafo
 	 */
 	public double[][] generateWeightMatrix();
 
