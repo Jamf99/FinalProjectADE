@@ -14,21 +14,21 @@ import java.util.Stack;
 
 public class Graph<V> {
 
-	public static class pair<L, R> {
+	public static class pair<D, L> {
 
-		private L dist;
-		private R list;
+		private D dist;
+		private L list;
 
-		public pair(L dist, R list) {
+		public pair(D dist, L list) {
 			this.dist = dist;
 			this.list = list;
 		}
 
-		public L getDist() {
+		public D getDist() {
 			return dist;
 		}
 
-		public R getList() {
+		public L getList() {
 			return list;
 		}
 
@@ -41,7 +41,7 @@ public class Graph<V> {
 		public boolean equals(Object o) {
 			if (!(o instanceof pair))
 				return false;
-			pair<L, R> pairo = (pair<L, R>) o;
+			pair<D, L> pairo = (pair<D, L>) o;
 			return this.dist.equals(pairo.getDist()) && this.list.equals(pairo.getList());
 		}
 
@@ -190,7 +190,6 @@ public class Graph<V> {
 		}
 		return list;
 	}
-	
 
 	public double[][] FloydWarshall(InterfaceGraph<V> g) {
 		double[][] w = g.generateWeightMatrix();
