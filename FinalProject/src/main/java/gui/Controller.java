@@ -21,6 +21,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import model.Mio;
 import structures.Edge;
+import structures.InterfaceGraph;
 
 public class Controller implements Initializable {
 	
@@ -191,30 +192,40 @@ public class Controller implements Initializable {
     		try {
     			kilometers.setText(model.getOperator().Dijkstra(model.getGraph(), v1, v2).getDist()+"");
     			List<String> list = model.getOperator().Dijkstra(model.getGraph(), v1, v2).getList();
-    			paintVertices(list);
+    			paint(list);
     		}catch(Exception e) {
     			
     		}
     	}
     }
     
-    public void paintVertices(List<String> list) {
-    	for(int i = 0; i < list.size(); i++) {
+    public void paint(List<String> list) {
+    	int size = list.size();
+    	for(int i = 0; i < size; i++) {
     		String value = list.get(i);
     		if(vertexMap.containsKey(value)) {
     			vertexMap.get(value).setFill(Color.RED);
     		}
-//    		try {
-//    			if(list.get(i+1)!= null) {
-//    				Edge<String> aux = model.getGraph().exist
-//    				if(edgeMap.containsKey(aux)) {
-//    	    			edgeMap.get(aux).setFill(Color.RED);
-//    	    		}
-//    			}
-//    		}catch(Exception e) {
-//    			
-//    		}
+    		try {
+    			if(i+1<size) {
+    				Edge<String> aux = foundEdge(list.get(i), list.get(i+1));
+    				if(edgeMap.containsKey(aux)) {
+    	    			edgeMap.get(aux).setStroke(Color.RED);
+    	    		}
+    			}
+    		}catch(Exception e) {
+    			e.printStackTrace();
+    		}
     	}
+    }
+    
+    public Edge<String> foundEdge(String start, String ending) {
+    	for(Edge<String> edge: model.getGraph().getEdges()) {
+    		if((edge.getEnding().equalsIgnoreCase(ending) || edge.getEnding().equals(start)) && (edge.getStart().equalsIgnoreCase(start) || edge.getStart().equals(ending))) {
+    			return edge;
+    		}
+    	}
+    	return null;
     }
     
     public void asignateEdges() {
@@ -238,6 +249,27 @@ public class Controller implements Initializable {
     @FXML
     void generateMST(ActionEvent event) {
     	revert();
+    	String origin = startMst.getSelectionModel().getSelectedItem();
+    	try {
+    		if(adyacentMatrix.isSelected()) {
+    			InterfaceGraph<String> graphMatrix = model.getOperator().prim(model.getGraph(), origin);
+    			graphMatrix.getVertices();
+    			for(String r : graphMatrix.getVertices()) {
+    				if(vertexMap.containsKey(r)) {
+    					vertexMap.get(r).setFill(Color.ORANGE);
+    				}
+    			}
+    			for(Edge<String> edges: graphMatrix.getEdges()) {
+    				if(edgeMap.containsKey(edges)) {
+    					edgeMap.get(edges).setStroke(Color.ORANGE);
+    				}
+    			}
+    		}else {
+    		
+    		}
+    	}catch(Exception e) {
+    		
+    	}
     }
     
     public void revert() {
@@ -246,14 +278,14 @@ public class Controller implements Initializable {
     	floraIndustrial.setFill(Color.DODGERBLUE);sanBosco.setFill(Color.DODGERBLUE);sucre.setFill(Color.DODGERBLUE);salomia.setFill(Color.DODGERBLUE);
     	melendez.setFill(Color.DODGERBLUE);unidadDeportiva.setFill(Color.DODGERBLUE);manzanaSaber.setFill(Color.DODGERBLUE);buitrera.setFill(Color.DODGERBLUE);
     	refugio.setFill(Color.DODGERBLUE);universidades.setFill(Color.DODGERBLUE);univalle.setFill(Color.DODGERBLUE);pampalinda.setFill(Color.DODGERBLUE);	
-    	menga_floraIndustrial.setFill(Color.BLACK);chiminangos_pasoComercio.setFill(Color.BLACK);chiminangos_pasoComercio.setFill(Color.BLACK);
-    	chiminangos_menga.setFill(Color.BLACK);menga_torreCali.setFill(Color.BLACK);floraIndustrial_manzanaSaber.setFill(Color.BLACK);
-    	pasoComercio_menga.setFill(Color.BLACK);torreCali_sanBosco.setFill(Color.BLACK);floraIndustrial_sanBosco.setFill(Color.BLACK);
-    	sucre_salomia.setFill(Color.BLACK);sucre_melendez.setFill(Color.BLACK);melendez_buitrera.setFill(Color.BLACK);salomia_manzanaSaber.setFill(Color.BLACK);
-    	melendez_unidadDeportiva.setFill(Color.BLACK);unidadDeportiva_manzanaSaber.setFill(Color.BLACK);unidadDeportiva_pampalinda.setFill(Color.BLACK);
-    	melendez_pampalinda.setFill(Color.BLACK);pampalinda_refugio.setFill(Color.BLACK);buitrera_refugio.setFill(Color.BLACK);
-    	buitrera_universidades.setFill(Color.BLACK);refugio_universidades.setFill(Color.BLACK);manzanaSaber_univalle.setFill(Color.BLACK);
-    	manzanaSaber_universidades.setFill(Color.BLACK);univalle_universidades.setFill(Color.BLACK);sanBosco_sucre.setFill(Color.BLACK);
+    	menga_floraIndustrial.setStroke(Color.BLACK);chiminangos_pasoComercio.setStroke(Color.BLACK);chiminangos_pasoComercio.setStroke(Color.BLACK);
+    	chiminangos_menga.setStroke(Color.BLACK);menga_torreCali.setStroke(Color.BLACK);floraIndustrial_manzanaSaber.setStroke(Color.BLACK);
+    	pasoComercio_menga.setStroke(Color.BLACK);torreCali_sanBosco.setStroke(Color.BLACK);floraIndustrial_sanBosco.setStroke(Color.BLACK);
+    	sucre_salomia.setStroke(Color.BLACK);sucre_melendez.setStroke(Color.BLACK);melendez_buitrera.setStroke(Color.BLACK);salomia_manzanaSaber.setStroke(Color.BLACK);
+    	melendez_unidadDeportiva.setStroke(Color.BLACK);unidadDeportiva_manzanaSaber.setStroke(Color.BLACK);unidadDeportiva_pampalinda.setStroke(Color.BLACK);
+    	melendez_pampalinda.setStroke(Color.BLACK);pampalinda_refugio.setStroke(Color.BLACK);buitrera_refugio.setStroke(Color.BLACK);
+    	buitrera_universidades.setStroke(Color.BLACK);refugio_universidades.setStroke(Color.BLACK);manzanaSaber_univalle.setStroke(Color.BLACK);
+    	manzanaSaber_universidades.setStroke(Color.BLACK);univalle_universidades.setStroke(Color.BLACK);sanBosco_sucre.setStroke(Color.BLACK);
     }
     
     
@@ -267,49 +299,52 @@ public class Controller implements Initializable {
     void selectAdyacentList(ActionEvent event) {
     	butGenerateAdyacentMatrix.setDisable(true);
     	revert();
-    	
+    	model = new Mio(false);
     }
 
     @FXML
     void selectAdyacentMatrix(ActionEvent event) {
     	butGenerateAdyacentMatrix.setDisable(false);
     	revert();
+    	model = new Mio(true);
     }
 
-    
-    
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		vertexMap = new HashMap<String, Circle>();
+    public void start() {
+    	vertexMap = new HashMap<String, Circle>();
 		edgeMap = new HashMap<Edge<String>, Line>();
-		lines = new Line[24];
-		lines[0] = chiminangos_pasoComercio;lines[1] = chiminangos_menga;lines[2] = pasoComercio_menga;
-		lines[3] = menga_torreCali;lines[4] = menga_floraIndustrial;lines[5] = torreCali_sanBosco;
-		lines[6] = floraIndustrial_sanBosco;lines[7] = sanBosco_sucre;lines[8] = sucre_salomia;
-		lines[9] = sucre_melendez;lines[10] = salomia_manzanaSaber;lines[11] = unidadDeportiva_manzanaSaber;
-		lines[12] = melendez_pampalinda;lines[13] = melendez_unidadDeportiva;lines[14] = melendez_buitrera;
-		lines[15] = unidadDeportiva_pampalinda;lines[16] = pampalinda_refugio;lines[17] = buitrera_refugio;
-		lines[18] = refugio_universidades;lines[19] = buitrera_universidades;lines[20] = manzanaSaber_universidades;
-		lines[21] = manzanaSaber_univalle;lines[22] = univalle_universidades;lines[23] = floraIndustrial_manzanaSaber;
+    	lines = new Line[24];
+		lines[0] = refugio_universidades;lines[1] = sanBosco_sucre;lines[2] = menga_torreCali;
+		lines[3] = torreCali_sanBosco;lines[4] = sucre_salomia;lines[5] = melendez_pampalinda;
+		lines[6] = menga_floraIndustrial;lines[7] = unidadDeportiva_manzanaSaber;lines[8] = pasoComercio_menga;
+		lines[9] = melendez_unidadDeportiva;lines[10] = pampalinda_refugio;lines[11] = sucre_melendez;
+		lines[12] = buitrera_universidades;lines[13] = univalle_universidades;lines[14] = buitrera_refugio;
+		lines[15] = unidadDeportiva_pampalinda;lines[16] = salomia_manzanaSaber;lines[17] = chiminangos_menga;
+		lines[18] = manzanaSaber_univalle;lines[19] = melendez_buitrera;lines[20] = chiminangos_pasoComercio;
+		lines[21] = manzanaSaber_universidades;lines[22] = floraIndustrial_sanBosco;lines[23] = floraIndustrial_manzanaSaber;
 		
 		vertexMap.put("Chiminangos", chiminangos);vertexMap.put("Paso del Comercio", pasoDelComercio);vertexMap.put("Menga", menga);
 		vertexMap.put("Torre de Cali", torreCali);vertexMap.put("San Bosco", sanBosco);vertexMap.put("Sucre", sucre);
-		vertexMap.put("Flora Industrial", floraIndustrial);vertexMap.put("Salomia", salomia);vertexMap.put("Melendez", melendez);
+		vertexMap.put("Flora industrial", floraIndustrial);vertexMap.put("Salomia", salomia);vertexMap.put("Melendez", melendez);
 		vertexMap.put("Unidad deportiva", unidadDeportiva);vertexMap.put("Manzana del saber", manzanaSaber);vertexMap.put("Buitrera", buitrera);
 		vertexMap.put("Pampalinda", pampalinda);vertexMap.put("Refugio", refugio);vertexMap.put("Univalle", univalle);vertexMap.put("Universidades", universidades);
-
+		asignateEdges();
+    }
+    
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
 		model = new Mio(adyacentMatrix.isSelected());
 		
 		ObservableList<String> states = FXCollections.observableArrayList("Chiminangos", "Paso del Comercio", "Menga", "Torre de Cali",
 				"San Bosco", "Sucre", "Flora industrial", "Salomia", "Melendez", "Unidad deportiva", "Manzana del saber", "Buitrera",
 				"Pampalinda", "Refugio", "Univalle", "Universidades");
+		
 		origin.setItems(states);
 		origin.getSelectionModel().select(0);
 		ending.setItems(states);
 		ending.getSelectionModel().select(1);
 		startMst.setItems(states);
 		startMst.getSelectionModel().select(0);
-		asignateEdges();
+		start();
 	}
 
 }
