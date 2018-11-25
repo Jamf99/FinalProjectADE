@@ -3,7 +3,9 @@ package structures;
 import java.util.HashMap;
 
 public class UnionFind<V> {
-
+/**
+ * HashMap de vertice conjunto que contendra los conjuntos
+ */
 	private HashMap<V, DisjointSet<V>> components;
 
 	public UnionFind() {

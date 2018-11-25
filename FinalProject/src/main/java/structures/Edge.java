@@ -2,7 +2,7 @@ package structures;
 
 public class Edge<V> implements Comparable<Edge<V>> {
 	/**
-	 * peso de la arista, en este caso es de valor numerico
+	 * Peso de la arista, en este caso sera numerico.
 	 */
 	private double value;
 

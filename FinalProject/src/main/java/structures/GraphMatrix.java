@@ -7,17 +7,33 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class GraphMatrix<V> implements InterfaceGraph<V> {
-
+	/**
+	 * HashMap donde se guandaran los vertices clave vertice, retorno indice.
+	 */
 	private HashMap<V, Integer> vertices;
+	/**
+	 * Arreglo de indices de los vertices.
+	 */
 	private ArrayList<V> indices;
+	/**
+	 * Matriz numerica donde se guardaran la adyacencia de los vertices del grafo
+	 */
 	private Number[][] matrix;
+	/**
+	 * Atributo boolean para determinar si el grafo es dirigido o no dirigido
+	 */
 	private boolean directed;
+	/**
+	 * Set de aristas, del grafo
+	 */
 	private Set<Edge<V>> edges;
 
-	public Number[][] getMatrix() {
-		return matrix;
-	}
-
+	/**
+	 * Constructor de la clase GraphMatrix, construye un grafo vacio, y me se puede
+	 * determinar si es dirigido o no dirigido.
+	 * 
+	 * @param directed boolean que determina si el grafo es dirigido o no dirigido.
+	 */
 	public GraphMatrix(boolean directed) {
 		vertices = new HashMap<V, Integer>();
 		indices = new ArrayList<V>();
@@ -26,8 +42,13 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 		this.directed = directed;
 	}
 
-
-
+	/**
+	 * Constructor de la clase GraphMatrix, construye un grafo con los vertices en
+	 * un arreglo pero sin las aristas, puede ser el grafo dirigido o no dirigido.
+	 * 
+	 * @param directed boolean que determina si el grafo es dirigido o no dirigido.
+	 * @param objects  arreglo de vertices para la construccion del grafo
+	 */
 	public GraphMatrix(boolean directed, V[] objects) {
 		vertices = new HashMap<V, Integer>();
 		indices = new ArrayList<V>();
@@ -39,6 +60,13 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 		}
 	}
 
+	/**
+	 * Constructor de la clase GraphMatrix construte un grafo con los vertices en un
+	 * set pero sin las aristas, puede ser el grafo dirigido o no dirigido.
+	 * 
+	 * @param directed boolean que me determina si el grafo es dirigido o no
+	 * @param objects  set de vertices para la construccion del grafo
+	 */
 	public GraphMatrix(boolean directed, Set<V> objects) {
 		vertices = new HashMap<V, Integer>();
 		indices = new ArrayList<V>();
@@ -67,7 +95,6 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 			for (int i = 0; i < aux.length; i++) {
 				for (int j = 0; j < aux.length; j++) {
 					if (i < matrix.length && j < matrix.length) {
-
 						aux[i][j] = matrix[i][j];
 					} else {
 						aux[i][j] = null;
@@ -79,15 +106,9 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 		return v;
 	}
 
-	public void setMatrix(Number[][] matrix) {
-		this.matrix = matrix;
-	}
-
 	@Override
 	public void addEdge(V v1, V v2) {
-
 		addEdge(v1, v2, 1);
-
 	}
 
 	@Override
@@ -153,6 +174,12 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 		}
 	}
 
+	/**
+	 * Metodo que me determina el peso de la arista
+	 * 
+	 * @param vertice A de inicio de la arista
+	 * @param Vertice B del final de la arista
+	 */
 	@Override
 	public double getWeight(V v1, V v2) throws Exception {
 
@@ -161,11 +188,10 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 
 				return matrix[vertices.get(v1)][vertices.get(v2)].doubleValue();
 			} catch (Exception e) {
-				// TODO: handle exception
 				return Double.POSITIVE_INFINITY;
 			}
 		} else {
-			throw new Exception("At least one of the specified vertices does not belong to the graph");
+			throw new Exception("Por lo menos uno de los vertices especificados no pertenece al grafo");
 		}
 
 	}
@@ -266,8 +292,14 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 		}
 	}
 
+	/**
+	 * Metodo que retorna la matriz de adyacencia del grafo
+	 *
+	 * 
+	 * @return una matriz Number. El tamaño de la matriz es la cantidad de vertices
+	 *         que hay en el grafo.
+	 */
 	public Number[][] getAdjacencyMatriz() {
-
 		return matrix;
 	}
 
@@ -289,14 +321,12 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 
 	@Override
 	public List<Edge<V>> getOutgoingEdges(V v) {
-		// TODO Auto-generated method stub
 		if (vertices.containsKey(v)) {
 			ArrayList<Edge<V>> list = new ArrayList<Edge<V>>();
 			for (V aux : this.getAdjacentVertices(v)) {
 				try {
 					list.add(new Edge<V>(v, aux, this.getWeight(v, aux)));
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -308,7 +338,6 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 
 	@Override
 	public double[][] generateWeightMatrix() {
-		// TODO Auto-generated method stub
 		double[][] m = new double[matrix.length][matrix.length];
 		for (int i = 0; i < m.length; i++) {
 			for (int j = 0; j < m.length; j++) {
@@ -327,4 +356,11 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 		return m;
 	}
 
+	public Number[][] getMatrix() {
+		return matrix;
+	}
+
+	public void setMatrix(Number[][] matrix) {
+		this.matrix = matrix;
+	}
 }

@@ -5,14 +5,15 @@ import java.util.Set;
 
 public interface InterfaceGraph<V> {
 	/**
-	 * Metodo que agrega un vertice
+	 * Metodo que agrega un vertice al grafo, siempre y cuando este vertice no forme
+	 * parte del grafo
 	 * 
-	 * @param v vertice
+	 * @param v vertice a agregar en el grafo
 	 */
 	public V addVertex(V v);
 
 	/**
-	 * Metodo que agrega una arista
+	 * Metodo que agrega una arista al grafo, siempre y cuando esa arista no forme parte ya del grafo.
 	 * 
 	 * @param v1 vertice incial
 	 * @param v2 vertice final
@@ -20,7 +21,7 @@ public interface InterfaceGraph<V> {
 	public void addEdge(V v1, V v2);
 
 	/**
-	 * Metodo que agrega una arista con el peso
+	 * Metodo que agrega una arista al grafo con el peso de esta, siempre y cuando esta no forme parte ya del grafo.
 	 * 
 	 * @param v1 vertice inicial
 	 * @param v2 vertice final
@@ -68,11 +69,18 @@ public interface InterfaceGraph<V> {
 	 */
 	public Set<Edge<V>> getEdges();
 
+	/**
+	 * Metodo que elimina una arista del grafo.
+	 * 
+	 * @param v1 vertice A de inicio
+	 * @param v2 Vertice B de final
+	 */
 	public void deleteEdge(V v1, V v2);
 
 	public double getWeight(V v1, V v2) throws Exception;
 
 	/**
+	 * Metodo que me determina si el grafo es dirigido o no dirigido.
 	 * 
 	 * @return devuelve true si el grafo es dirigido, de lo contrario retorna false
 	 */
@@ -88,6 +96,11 @@ public interface InterfaceGraph<V> {
 	 */
 	public boolean edgeExist(V v1, V v2);
 
+	/**
+	 * Matriz de pesos de las aristas.
+	 * 
+	 * @return retorna los pesos del grafo
+	 */
 	public double[][] generateWeightMatrix();
 
 }
