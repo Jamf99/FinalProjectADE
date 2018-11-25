@@ -186,20 +186,6 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 		}
 
 	}
-	
-	public Edge<V> foundEdge(V v1, V v2) {
-		Edge<V> edge = null;
-		if (!vertices.containsKey(v1) || !vertices.containsKey(v2)) {
-			return null;
-		} else {
-			if (matrix[vertices.get(v1)][vertices.get(v2)] == null) {
-				return null;
-			} else {
-				return null;
-			}
-		}
-
-	}
 
 	@Override
 	public List<V> getAdjacentVertices(V v) {
