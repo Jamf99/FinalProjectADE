@@ -51,7 +51,7 @@ public class Mio {
 		String v14 = graph.addVertex("Refugio");
 		String v15 = graph.addVertex("Univalle");
 		String v16 = graph.addVertex("Universidades");
-		graph.addEdge(v1, v2, 89);
+		graph.addEdge(v1, v2, 80);
 		graph.addEdge(v1, v3, 49);
 		graph.addEdge(v2, v3, 25);
 		graph.addEdge(v3, v4, 15);

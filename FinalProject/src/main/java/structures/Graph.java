@@ -104,10 +104,6 @@ public class Graph<V> {
 			}
 		}
 
-		for (V aux : table.keySet()) {
-			System.out.println(aux + " : " + table.get(aux).dist + " : " + table.get(aux).list);
-		}
-
 		ArrayList<V> path = new ArrayList<V>();
 		V current1 = end;
 		while (current1 != null) {
