@@ -1,93 +1,238 @@
-//package test;
-//
-//import org.junit.jupiter.api.Test;
-//
-//import junit.framework.TestCase;
-//import structures.Edge;
-//import structures.GraphMatrix;
-//import structures.Vertex;
-//
-//class GraphMatrixTest extends TestCase {
-//	
-//	private GraphMatrix<String, Integer> graphMatrix;
-//	
-//	private void stage1() {
-//		graphMatrix = new GraphMatrix<String, Integer>(false);
-//	}
-//	
-//	@Test
-//	public void testAddEdge1() {
-//		stage1();
-//		assertEquals(0, graphMatrix.getMatrix().length);
-//	}
-//	
-//	private void stage2() {
-//		graphMatrix = new GraphMatrix<String, Integer>(false);
-//	}
-//	
-//	@Test
-//	public void testAddEdge2() {
-//		stage2();
-//		Vertex<String> vertex1 = new Vertex<String>("A");
-//		graphMatrix.addVertex(vertex1);
-//		Vertex<String> vertex2 = new Vertex<String>("B");
-//		graphMatrix.addVertex(vertex2);
-//		Edge<Vertex<String>, Integer> edge = new Edge<Vertex<String>, Integer>(vertex2, 50);
-//		graphMatrix.addEdge(vertex1, vertex2, edge.getValue());
-//		boolean flag = false;
-//		for(int i = 0; i < graphMatrix.getMatrix().length && !flag; i++) {
-//			for (int j = 0; j < graphMatrix.getMatrix()[0].length && !flag; j++) {
-//				if(graphMatrix.getMatrix()[i][j] != null) {
-//					if(graphMatrix.getMatrix()[i][j].compareTo(edge) == 0) {
-//						flag = true;
-//					}
-//				}
-//			}
-//		}
-//		assertTrue(flag);
-//	}
-//	
-//	private void stage3() {
-//		graphMatrix = new GraphMatrix<String, Integer>(false);
-//	}
-//	
-//	@Test
-//	public void testAddVertex() {
-//		stage3();
-//		Vertex<String> vertex1 = new Vertex<String>("A");
-//		graphMatrix.addVertex(vertex1);
-//		assertTrue(graphMatrix.getNumbers().size() == 1);
-//	}
-//
-//	
-//	@Test
-//	public void testBFS() {
-//		stage3();
-//		Vertex<String> v1 = new Vertex<String>("A");
-//		graphMatrix.addVertex(v1);
-//		Vertex<String> v2 = new Vertex<String>("B");
-//		graphMatrix.addVertex(v2);
-//		Vertex<String> v3 = new Vertex<String>("C");
-//		graphMatrix.addVertex(v3);
-//		Vertex<String> v4 = new Vertex<String>("D");
-//		graphMatrix.addVertex(v4);
-//		Edge<Vertex<String>, Integer> edge1 = new Edge<Vertex<String>, Integer>(v2, 50);
-//		graphMatrix.addEdge(v1, v2, edge1.getValue());
-//		Edge<Vertex<String>, Integer> edge2 = new Edge<Vertex<String>, Integer>(v4, 20);
-//		graphMatrix.addEdge(v2, v4, edge2.getValue());
-//		Edge<Vertex<String>, Integer> edge3 = new Edge<Vertex<String>, Integer>(v3, 10);
-//		graphMatrix.addEdge(v2, v3, edge3.getValue());
-//		graphMatrix.BFS(v3);
-//		Vertex<String>[] array = new Vertex[4];
-//		array[0] = v1;
-//		array[1] = v2;
-//		array[2] = v3;
-//		array[3] = v4;
-//		for (int i = 0; i < graphMatrix.getNumbers().size(); i++) {
-////			System.out.println(graphMatrix.getVisits()[i].getValue());
-//			assertEquals(array[i].getValue(), graphMatrix.getVisits()[i].getValue());
-//		}
-////		assertArrayEquals(array, );
-//	}
-//	
-//}
+package test;
+
+import static org.junit.Assert.assertArrayEquals;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+import junit.framework.TestCase;
+import structures.Edge;
+import structures.GraphMatrix;
+
+class GraphMatrixTest extends TestCase {
+	
+	GraphMatrix<String> matrix;
+	
+	private void stage1() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testGetMatrix1() {
+		stage1();
+		int[][] number = new int[0][0];
+		assertArrayEquals(number, matrix.getMatrix());
+	}
+
+	private void stage2() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testGetMatrix2() {
+		stage2();
+		assertNotNull(matrix.getMatrix());
+	}
+	
+	private void stage3() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testIsDirected1() {
+		stage3();
+		assertTrue(matrix.isDirected());
+	}
+
+	private void stage4() {
+		matrix = new GraphMatrix<String>(false);
+	}
+
+	@Test
+	public void testIsDirected2() {
+		stage4();
+		assertFalse(matrix.isDirected());
+	}
+	
+	private void stage5() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testAddVertex() {
+		stage5();
+		matrix.addVertex("Perro");
+		assertTrue(matrix.getVertices().contains("Perro"));
+	}
+	
+	private void stage6() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testAddEdge1() {
+		stage6();
+		matrix.addVertex("Sapo");
+		matrix.addVertex("Rata");
+		matrix.addEdge("Sapo", "Rata");
+		assertFalse(matrix.getEdges().isEmpty());
+	}
+	
+	private void stage8() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testAddEdge2() {
+		stage8();
+		matrix.addVertex("Sapo");
+		matrix.addVertex("Rata");
+		matrix.addEdge("Sapo", "Rata", 8);
+		assertFalse(matrix.getEdges().isEmpty());
+	}
+	
+	private void stage9() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testGetWeight1() throws Exception {
+		stage9();
+		matrix.addVertex("Sapo");
+		matrix.addVertex("Rata");
+		matrix.addEdge("Sapo", "Rata", 8.5);
+		assertEquals(8.5, matrix.getWeight("Sapo", "Rata"));
+	}
+	
+	private void stage10() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testEdgeExist() {
+		stage10();
+		matrix.addVertex("Sapo");
+		matrix.addVertex("Rata");
+		matrix.addEdge("Sapo", "Rata");
+		assertTrue(matrix.edgeExist("Sapo", "Rata"));
+	}
+	
+	private void stage11() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testGetAdjacentVertices() {
+		stage11();
+		matrix.addVertex("Sapo");
+		matrix.addVertex("Rata");
+		matrix.addEdge("Sapo", "Rata");
+		assertEquals("Rata", matrix.getAdjacentVertices("Sapo").get(0));
+	}
+	
+	private void stage12() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testGetVertices() {
+		stage12();
+		
+	}
+	
+	private void stage13() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testDeleteVertex() {
+		stage13();
+		matrix.addVertex("Perro");
+		matrix.deleteVertex("Perro");
+		assertTrue(matrix.getVertices().isEmpty());
+	}
+	
+	private void stage14() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testDeleteEdges() {
+		stage14();
+		matrix.addVertex("Perro");
+		matrix.addVertex("Gato");
+		matrix.addEdge("Perro", "Gato");
+		matrix.deleteEdge("Perro", "Gato");
+		assertTrue(matrix.getEdges().isEmpty());
+	}
+
+	private void stage16() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testGetEdges() {
+		stage16();
+		
+	}
+	
+	private void stage17() {
+		matrix = new GraphMatrix<String>(false);
+	}
+
+	@Test
+	public void testGetOutGoingEdges() {
+		stage17();
+		matrix.addVertex("Perro");
+		matrix.addVertex("Gato");
+		matrix.addVertex("Sapo");
+		matrix.addVertex("Rata");
+		matrix.addEdge("Perro", "Gato", 5.4);
+		matrix.addEdge("Gato", "Sapo", 6.1);
+		matrix.addEdge("Perro", "Rata", 2.4);
+		double[] nums = {5.4,6.1};
+		ArrayList<Edge<String>> list = (ArrayList<Edge<String>>) matrix.getOutgoingEdges("Gato");
+		double[] arr = new double[list.size()];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = matrix.getOutgoingEdges("Gato").get(i).getValue();
+		}
+		assertArrayEquals(nums, arr, 0);
+	}
+	
+	private void stage18() {
+		matrix = new GraphMatrix<String>(true);
+	}
+
+	@Test
+	public void testGenerateWeightMatrix() {
+		stage18();
+		matrix.addVertex("Perro");
+		matrix.addVertex("Gato");
+		matrix.addVertex("Sapo");
+		matrix.addVertex("Rata");
+		matrix.addEdge("Perro", "Gato", 5.4);
+		matrix.addEdge("Gato", "Sapo", 6.1);
+		matrix.addEdge("Perro", "Rata", 2.4);
+		double[][] nums = matrix.generateWeightMatrix();
+		for (int i = 0; i < nums.length; i++) {
+			for (int j = 0; j < nums.length; j++) {
+				if(nums[i][j] == Double.POSITIVE_INFINITY) {
+					nums[i][j] = -1.0;
+				}
+			}
+		}
+		
+		double[][] matriz = {{0.0, 5.4, -1.0, 2.4},{-1.0, 0.0, 6.1, -1.0},{-1.0, -1.0, 0.0, -1.0},{-1.0, -1.0, -1.0, 0.0}};
+		boolean pass = true;
+		for (int i = 0; i < nums.length; i++) {
+			for (int j = 0; j < nums.length; j++) {
+				if(nums[i][j] != matriz[i][j]) {
+					pass = false;
+				}
+			}
+		}
+		assertTrue(pass);
+	}
+	
+}
