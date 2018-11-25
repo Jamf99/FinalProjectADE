@@ -26,9 +26,7 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 		this.directed = directed;
 	}
 
-	public Number[][] giveAdjacencyMatrix() {
-		return matrix;
-	}
+
 
 	public GraphMatrix(boolean directed, V[] objects) {
 		vertices = new HashMap<V, Integer>();
