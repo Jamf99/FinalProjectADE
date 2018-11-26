@@ -1,19 +1,15 @@
 package gui;
-
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -21,11 +17,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.stage.Stage;
 import model.Mio;
 import structures.Edge;
 import structures.InterfaceGraph;
@@ -164,7 +158,10 @@ public class Controller implements Initializable {
 	private RadioButton adyacentMatrix;
 
 	@FXML
-	private Button butGenerateAdyacentMatrix;
+	private Button butFloydWarshall;
+	
+	@FXML
+	private Button butGenerateDistanceMatrix;
 
 	@FXML
 	private ToggleGroup type;
@@ -245,41 +242,59 @@ public class Controller implements Initializable {
 	}
 
 	@FXML
-	void generateAdyacentMatrix(ActionEvent event) {
-		double[][] matrix = model.getGraph().generateWeightMatrix();
-		for(int i = 0; i < matrix.length; i++) {
-			System.out.print("|");
-			for(int j = 0; j < matrix[i].length; j++) {
+	void FloydWarshall(ActionEvent event) {
+		DecimalFormat df = new DecimalFormat("#");
+		double[][] matrix = model.getOperator().FloydWarshall(model.getGraph());
+		String result = "";
+		for (int i = 0; i < matrix.length; i++) {
+			result+="|  ";
+			for (int j = 0; j < matrix[i].length; j++) {
 				if(matrix[i][j] == Double.POSITIVE_INFINITY) {
-					System.out.print("-");
+					result+="-";
 				}else {
-					System.out.print(matrix[i][j]);
+					result+=df.format(matrix[i][j])+"";
 				}
 				if(j!=matrix[i].length-1) {
-					System.out.print("\t");
+					result+="\t\t";
 				}
 			}
-			System.out.println("|");
+			result+="  |\n";
 		}
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/view/adyacentMatrix.fxml"));
-			loader.load();
-			DistancesMatrixController estado = loader.getController();
-			Parent p = loader.getRoot();
-			Stage stage = new Stage();
-			stage.setScene(new Scene(p));
-			stage.setTitle("Distances Matrix");
-			stage.getIcons().add(new Image(getClass().getResourceAsStream("/view/logo.jpg")));
-			stage.showAndWait();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Floyd Warshall");
+        alert.setContentText(result);
+        alert.setHeaderText("Chiminangos - Paso del Comercio - Menga - Torre de Cali - San Bosco - Sucre - Flora industrial - Salomia -"
+        		+ " Melendez - Unidad deportiva - \nManzana del saber - Buitrera - Pampalinda - Refugio - Univalle - Universidades");
+        alert.showAndWait();
 	}
 
 	@FXML
 	void generateDistanceMatrix(ActionEvent event) {
-
+		DecimalFormat df = new DecimalFormat("#");
+		double[][] matrix = model.getGraph().generateWeightMatrix();
+		String result = "";
+		for (int i = 0; i < matrix.length; i++) {
+			result+="|  ";
+			for (int j = 0; j < matrix[i].length; j++) {
+				if(matrix[i][j] == Double.POSITIVE_INFINITY) {
+					result+="-";
+				}else {
+					result+=df.format(matrix[i][j])+"";
+				}
+				if(j!=matrix[i].length-1) {
+//					if()
+					result+="\t\t";
+				}
+			}
+			result+="  |\n";
+		}
+		System.out.println(result);
+		Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Distances Matrix");
+        alert.setContentText(result);
+        alert.setHeaderText("Chiminangos - Paso del Comercio - Menga - Torre de Cali - San Bosco - Sucre - Flora industrial - Salomia -"
+        		+ " Melendez - Unidad deportiva - \nManzana del saber - Buitrera - Pampalinda - Refugio - Univalle - Universidades");
+        alert.showAndWait();
 	}
 
 	@FXML
@@ -324,14 +339,16 @@ public class Controller implements Initializable {
 
 	@FXML
 	void selectAdyacentList(ActionEvent event) {
-		butGenerateAdyacentMatrix.setDisable(true);
+		butFloydWarshall.setDisable(true);
+		butGenerateDistanceMatrix.setDisable(true);
 		revert();
 		model = new Mio(false);
 	}
 
 	@FXML
 	void selectAdyacentMatrix(ActionEvent event) {
-		butGenerateAdyacentMatrix.setDisable(false);
+		butFloydWarshall.setDisable(false);
+		butGenerateDistanceMatrix.setDisable(false);
 		revert();
 		model = new Mio(true);
 	}
@@ -399,6 +416,7 @@ public class Controller implements Initializable {
 		startMst.setItems(states);
 		startMst.getSelectionModel().select(0);
 		start();
+
 	}
 
 }

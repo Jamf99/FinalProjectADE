@@ -215,7 +215,7 @@
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <Button fx:id="butGenerateAdyacentMatrix" layoutX="773.0" layoutY="616.0" mnemonicParsing="false" onAction="#generateAdyacentMatrix" prefHeight="37.0" prefWidth="169.0" text="Generate adyacent matrix" textAlignment="CENTER" textFill="#0b2c6e">
+      <Button fx:id="butFloydWarshall" layoutX="773.0" layoutY="616.0" mnemonicParsing="false" onAction="#FloydWarshall" prefHeight="37.0" prefWidth="169.0" text="Floyd Warshall" textAlignment="CENTER" textFill="#0b2c6e">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -223,7 +223,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="958.0" layoutY="615.0" mnemonicParsing="false" onAction="#generateDistanceMatrix" prefHeight="37.0" prefWidth="169.0" text="Generate distance matrix" textAlignment="CENTER" textFill="#0b2c6e">
+      <Button fx:id="butGenerateDistanceMatrix" layoutX="958.0" layoutY="615.0" mnemonicParsing="false" onAction="#generateDistanceMatrix" prefHeight="37.0" prefWidth="169.0" text="Generate distance matrix" textAlignment="CENTER" textFill="#0b2c6e">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

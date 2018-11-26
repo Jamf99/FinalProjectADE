@@ -9,9 +9,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class GraphList<V> implements InterfaceGraph<V> {
-/**
- * Mapa que contendra el vertice y sus vecinos
- */
+	/**
+	 * Mapa que contendra el vertice y sus vecinos
+	 */
 	private Map<V, Map<V, Number>> container;
 	/**
 	 * Set que contendra las aristas del grafo
@@ -21,19 +21,23 @@ public class GraphList<V> implements InterfaceGraph<V> {
 	 * atributo que me determina si el grafo es dirigido
 	 */
 	private boolean directed;
-/**
- * Constructor de la clase GraphList, se construye el grafo vacio y se determina si es dirigido o no es dirigido.
- * @param directed
- */
+
+	/**
+	 * Constructor de la clase GraphList, se construye el grafo vacio y se determina
+	 * si es dirigido o no es dirigido.
+	 * 
+	 * @param directed
+	 */
 	public GraphList(boolean directed) {
 		this.directed = directed;
 		container = new HashMap<V, Map<V, Number>>();
 		edges = new TreeSet<Edge<V>>();
-	
+
 	}
+
 	/**
-	 * Constructor de la clase GraphList, construye un grafo con los vertices en
-	 * un arreglo pero sin las aristas, puede ser el grafo dirigido o no dirigido.
+	 * Constructor de la clase GraphList, construye un grafo con los vertices en un
+	 * arreglo pero sin las aristas, puede ser el grafo dirigido o no dirigido.
 	 * 
 	 * @param directed boolean que determina si el grafo es dirigido o no dirigido.
 	 * @param objects  arreglo de vertices para la construccion del grafo
@@ -46,6 +50,7 @@ public class GraphList<V> implements InterfaceGraph<V> {
 			addVertex(objects[i]);
 		}
 	}
+
 	/**
 	 * Constructor de la clase GraphList construte un grafo con los vertices en un
 	 * set pero sin las aristas, puede ser el grafo dirigido o no dirigido.
@@ -231,7 +236,7 @@ public class GraphList<V> implements InterfaceGraph<V> {
 				try {
 					list.add(new Edge<V>(v, aux, this.getWeight(v, aux)));
 				} catch (Exception e) {
-				
+
 					e.printStackTrace();
 				}
 			}

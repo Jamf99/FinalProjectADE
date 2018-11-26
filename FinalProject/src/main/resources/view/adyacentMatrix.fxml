@@ -1,35 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="1342.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DistancesMatrixController">
    <children>
-      <GridPane layoutX="74.0" layoutY="89.0" prefHeight="452.0" prefWidth="642.0">
+      <Label layoutX="626.0" layoutY="33.0" text="Distances Matrix" textFill="#b90c0c">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="108.0" layoutY="103.0" prefHeight="367.0" prefWidth="1201.0">
+        <columns>
+          <TableColumn fx:id="chiminangos" prefWidth="75.0" resizable="false" text="Chim" />
+          <TableColumn fx:id="pasoComercio" prefWidth="75.0" resizable="false" text="Paso Com." />
+            <TableColumn fx:id="menga" prefWidth="75.0" text="Menga" />
+            <TableColumn fx:id="torreCali" prefWidth="75.0" text="T. Cali" />
+            <TableColumn fx:id="sanBosco" prefWidth="75.0" text="S. Bosco" />
+            <TableColumn fx:id="sucre" prefWidth="75.0" text="Sucre" />
+            <TableColumn fx:id="floraIndustrial" prefWidth="75.0" text="F. Industrial" />
+            <TableColumn fx:id="salomia" prefWidth="75.0" text="Salomia" />
+            <TableColumn fx:id="melendez" prefWidth="75.0" text="Melendez" />
+            <TableColumn fx:id="unidadDeportiva" prefWidth="75.0" text="U. Depor" />
+            <TableColumn fx:id="manzanaSaber" prefWidth="75.0" text="Man. Saber" />
+            <TableColumn fx:id="buitrera" prefWidth="75.0" text="Buitrera" />
+            <TableColumn fx:id="pampalinda" prefWidth="75.0" text="Pampalinda" />
+            <TableColumn fx:id="refugio" prefWidth="75.0" text="Refugio" />
+            <TableColumn fx:id="univalle" prefWidth="75.0" text="Univalle" />
+            <TableColumn fx:id="universidades" prefWidth="75.0" text="Universidades" />
+        </columns>
+      </TableView>
+      <GridPane layoutX="8.0" layoutY="133.0" prefHeight="345.0" prefWidth="100.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="159.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -48,22 +60,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Chiminangos" GridPane.rowIndex="1">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label text="Flora industrial" GridPane.rowIndex="2">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
+            <Label text="Chiminangos" />
          </children>
       </GridPane>
-      <Label layoutX="313.0" layoutY="31.0" text="Distances Matrix" textFill="#b90c0c">
-         <font>
-            <Font name="System Bold" size="21.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>
