@@ -9,11 +9,11 @@ public interface InterfaceGraph<V> {
 	 * parte del grafo
 	 * 
 	 * @param v vertice a agregar en el grafo
+	 * 
+	 * @return -
 	 */
 	public V addVertex(V v);
 
-	
-	
 	/**
 	 * Metodo que agrega una arista al grafo, siempre y cuando esa arista no forme
 	 * parte ya del grafo.
@@ -34,7 +34,7 @@ public interface InterfaceGraph<V> {
 	public void addEdge(V v1, V v2, double w);
 
 	/**
-	 * Lista<Edge<V>> que contiene todas las aristas que provienen del vertice v.
+	 * Lista que contiene todas las aristas que provienen del vertice v.
 	 * 
 	 * @param v vertice que se va a analizar.
 	 * @return Lista de aristas que provienen del vertice v.
@@ -49,27 +49,27 @@ public interface InterfaceGraph<V> {
 	public void deleteVertex(V v);
 
 	/**
-	 * Retorna una List<V> que contiene todos los vertices adyacentes al vertice
+	 * Retorna una List que contiene todos los vertices adyacentes al vertice
 	 * especificado.
 	 * 
 	 * @param v el vertice objetivo.
-	 * @return List<V> que contiene todos los vertices adyacentes al especificado.
+	 * @return List que contiene todos los vertices adyacentes al especificado.
 	 *         Ademas la lista sera vacia si el vertice v no forma parte del grafo o
 	 *         es parte del grafo pero no contiene vertices de adyacencia.
 	 */
 	public List<V> getAdjacentVertices(V v);
 
 	/**
-	 * retorna un un Set<V> que contiene los vertices del grafo
+	 * retorna un un Set que contiene los vertices del grafo
 	 * 
-	 * @return devuelve un set<V> que contiene todos los vertices del grafo.
+	 * @return devuelve un set que contiene todos los vertices del grafo.
 	 */
 	public Set<V> getVertices();
 
 	/**
-	 * retorna un un Set<Edge<V>> que contiene las aristas del grafo
+	 * retorna un un Set que contiene las aristas del grafo
 	 * 
-	 * @return devuelve un set<Edge<V>> que contiene todos las aristas del grafo.
+	 * @return devuelve un set que contiene todos las aristas del grafo.
 	 */
 	public Set<Edge<V>> getEdges();
 
@@ -89,7 +89,7 @@ public interface InterfaceGraph<V> {
 	 * @param v1 vertice A de inicio
 	 * @param v2 vertice B de salida
 	 * @return retorna el peso de la arista
-	 * @throws Exception
+	 * @throws Exception -
 	 */
 	public double getWeight(V v1, V v2) throws Exception;
 
@@ -101,7 +101,8 @@ public interface InterfaceGraph<V> {
 	public boolean isDirected();
 
 	/**
-	 * Metodo me determina si existe una arista entre 2 vertices, el vertice en inicio y el vertice final
+	 * Metodo me determina si existe una arista entre 2 vertices, el vertice en
+	 * inicio y el vertice final
 	 * 
 	 * @param v1 vertice de inicio
 	 * @param v2 vertice final

@@ -40,7 +40,7 @@ public class Edge<V> implements Comparable<Edge<V>> {
 	/**
 	 * Set del atributo start
 	 * 
-	 * @param start
+	 * @param start -
 	 */
 	public void setStart(V start) {
 		this.start = start;
@@ -58,7 +58,7 @@ public class Edge<V> implements Comparable<Edge<V>> {
 	/**
 	 * Set del metodo value
 	 * 
-	 * @param value
+	 * @param value -
 	 */
 	public void setValue(double value) {
 		this.value = value;
@@ -76,7 +76,7 @@ public class Edge<V> implements Comparable<Edge<V>> {
 	/**
 	 * set del atributo ending
 	 * 
-	 * @param ending
+	 * @param ending -
 	 */
 	public void setEnding(V ending) {
 		this.ending = ending;

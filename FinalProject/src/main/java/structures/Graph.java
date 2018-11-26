@@ -64,13 +64,13 @@ public class Graph<V> {
 	 * Metodo prim (MST) que encuentra los caminos mas cortos del grafo y una los
 	 * vertices
 	 * 
-	 * @param graph
+	 * @param graph  -
 	 * @param origin el vertice de origen de inicio de la busqueda de los caminos
 	 *               mas cortos.
 	 * @return devuelve un grafo que contendra los caminos mas cortos y una a todos
 	 *         los vertices
 	 */
-	public InterfaceGraph<V> prim(InterfaceGraph<V> graph, V origin) throws Exception {
+	public InterfaceGraph<V> prim(InterfaceGraph<V> graph, V origin) {
 
 		Set<V> visited = new HashSet<V>();
 		InterfaceGraph<V> g = new GraphMatrix<V>(false);

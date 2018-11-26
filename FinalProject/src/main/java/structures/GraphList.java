@@ -26,7 +26,7 @@ public class GraphList<V> implements InterfaceGraph<V> {
 	 * Constructor de la clase GraphList, se construye el grafo vacio y se determina
 	 * si es dirigido o no es dirigido.
 	 * 
-	 * @param directed
+	 * @param directed -
 	 */
 	public GraphList(boolean directed) {
 		this.directed = directed;
