@@ -6,16 +6,16 @@ import structures.GraphMatrix;
 import structures.InterfaceGraph;
 
 public class Mio {
-	
+
 	private InterfaceGraph<String> graph;
 	private Graph<String> operator;
 	private boolean isMatrix;
-	
+
 	public Mio(boolean isMatrix) {
 		this.isMatrix = isMatrix;
-		if(this.isMatrix) {
+		if (this.isMatrix) {
 			graph = new GraphMatrix<>(false);
-		}else {
+		} else {
 			graph = new GraphList<>(false);
 		}
 		operator = new Graph<String>();
@@ -33,7 +33,7 @@ public class Mio {
 	public boolean isMatrix() {
 		return isMatrix;
 	}
-	
+
 	public void createGraph() {
 		String v1 = graph.addVertex("Chiminangos");
 		String v2 = graph.addVertex("Paso del Comercio");
@@ -76,5 +76,5 @@ public class Mio {
 		graph.addEdge(v15, v16, 38);
 		graph.addEdge(v7, v11, 140);
 	}
-	
+
 }
