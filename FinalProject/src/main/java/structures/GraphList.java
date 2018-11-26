@@ -155,7 +155,7 @@ public class GraphList<V> implements InterfaceGraph<V> {
 				return Double.POSITIVE_INFINITY;
 			}
 		} else {
-			throw new Exception("At least one of the specified vertices does not belong to the graph");
+			throw new Exception("Por lo menos uno de los vertices especificados no pertenece al grafo");
 		}
 	}
 
