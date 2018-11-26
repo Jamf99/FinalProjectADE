@@ -12,6 +12,8 @@ public interface InterfaceGraph<V> {
 	 */
 	public V addVertex(V v);
 
+	
+	
 	/**
 	 * Metodo que agrega una arista al grafo, siempre y cuando esa arista no forme
 	 * parte ya del grafo.
