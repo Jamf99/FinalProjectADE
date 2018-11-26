@@ -174,12 +174,6 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 		}
 	}
 
-	/**
-	 * Metodo que me determina el peso de la arista
-	 * 
-	 * @param vertice A de inicio de la arista
-	 * @param Vertice B del final de la arista
-	 */
 	@Override
 	public double getWeight(V v1, V v2) throws Exception {
 
@@ -293,7 +287,7 @@ public class GraphMatrix<V> implements InterfaceGraph<V> {
 	}
 
 	/**
-	 * Metodo que retorna la matriz de adyacencia del grafo
+	 * Metodo que retorna la matriz de adyacencia del grafo.
 	 *
 	 * 
 	 * @return una matriz Number. El tamaño de la matriz es la cantidad de vertices
